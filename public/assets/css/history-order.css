@@ -1,0 +1,143 @@
+.history-order-wr {
+	width: 100%;
+	text-align: center;
+}
+/*		Main CNTN		*/
+.his-main {
+	width: 85%;
+	border: 1px solid #979797;
+	margin: 10px auto;
+}
+.his-title {
+	width: 100%;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	background-color: #4a4a4a;
+	color: #fff;
+}
+.his-title h2 {
+	font-size: 24px;
+	font-weight: bold;
+}
+.his-title a {
+	display: inline-block;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	font-size: 30px;
+	color: #fff;
+}
+
+/*		Info Client		*/
+.his-info {
+	text-align: center;
+}
+.his-info span:first-child {
+	display: inline-block;
+	text-align: center;
+	width: 30%;
+	margin: auto;
+	padding: 10px;
+}
+.his-info span i {
+	font-size: 40px;
+	color: #ff4157;
+}
+.his-client {
+	padding: 20px 10px 20px 100px;
+	text-align: left;
+	box-sizing: border-box;
+}
+.his-element {
+	text-align: left;
+	margin-bottom: 15px;
+}
+.his-element p {
+	width: 15%;
+	display: inline-block;
+	color: #a0a0a0;
+	font-size: 22px;
+	font-weight: bold;
+}
+.his-element span {
+	width: 84%;
+	font-size: 22px;
+	display: inline-block;
+	color: #4a4a4a;
+	font-weight: bold;
+}
+.his-line {
+	width: 30%;
+	height: 3px;
+	background-color: #e8e8e8;
+	margin: auto;
+	display: inline-block;
+}
+/*		Table		*/
+.his-data {
+	width: 90%;
+	text-align: center;
+	margin: 10px auto;
+}
+.table th {
+	text-align: center;
+	color: #757575;
+	font-size: 20px;
+	font-weight: bold;
+}
+table td {
+	color: #000;
+	font-size: 18px;
+	font-weight: bold;
+	vertical-align: middle !important;
+}
+th button {
+	background: transparent;
+	border: none;
+	outline: none;
+}
+th img {
+	width: 15px !important;
+	height: 15px;
+	display: inline-block;
+	transform: rotate(90deg);
+}
+.his-btn-transfer img {
+	height: 100%;
+}
+table td a {
+	font-size: 16px;
+	text-decoration: underline;
+}
+.btn {
+	width: 150px;
+	color: #fff;
+	font-weight: bold;
+}
+.his-btn-confirm {
+	display: block;
+	background-color: #00ba99;
+}
+.his-btn-ship {
+	display: block;
+	background-color: #ffc341;
+}
+.his-btn-done {
+	display: block;
+	background-color: #ff4157;
+}
+/*		Popup		*/
+.his-btn-all {
+	color: #565657;
+	font-weight: bold;
+}
+.his-popup-status {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 20px;
+	width: auto;
+	background-color: #fff;
+	box-shadow: 1px 1px 10px #a9a9a9;
+}

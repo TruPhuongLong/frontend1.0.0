@@ -6,7 +6,7 @@ export const URL_SIGNUP = URL_BASE + '/signup';
 export const URL_USERS = URL_BASE + '/users';
 
 //url admin:
-const URL_ADMIN_BASE = URL_BASE + '/admin'; // this url use for put /userId and delete /userEmail too.
+export const URL_ADMIN_BASE = URL_BASE + '/admin'; // this url use for put /userId and delete /userEmail too.
 export const URL_ADMIN_LOGIN = URL_ADMIN_BASE + '/login';
 export const URL_ADMIN_SIGNUP_WITH_PERMIT = URL_ADMIN_BASE + '/signupWithPermit';
 export const URL_ADMIN_USERS = URL_ADMIN_BASE + '/users';

@@ -25,40 +25,37 @@ import {
 //user regular
 export const signupUserAction = (model) => {
     return (dispatch, getState, extraArgument) => {
-        signupUser(model)
+        return signupUser(model)
             .then(user => {
-                dispatch({
+                return dispatch({
                     type: SIGNUP_USER,
                     payload: user
                 })
             })
-            .catch()
     }
 }
 
 export const loginUserAction = (model) => {
     return (dispatch, getState, extraArgument) => {
-        loginContainer(loginUser(model))
+        return loginContainer(loginUser(model))
             .then(user => {
-                dispatch({
+                return dispatch({
                     type: LOGIN_USER,
                     payload: user
                 })
             })
-            .catch()
     }
 }
 
 export const getUsersAction = (query) => {
     return (dispatch, getState, extraArgument) => {
-        getUsers(query)
+        return getUsers(query)
             .then(users => {
-                dispatch({
+                return dispatch({
                     type: GET_USERS,
                     payload: users
                 })
             })
-            .catch()
     }
 }
 
@@ -66,69 +63,60 @@ export const getUsersAction = (query) => {
 //admin
 export const signupAdminAction = (model) => {
     return (dispatch, getState, extraArgument) => {
-        signupAdmin(model)
+        return signupAdmin(model)
             .then(user => {
-                dispatch({
+                return dispatch({
                     type: SIGNUP_ADMIN,
                     payload: user
                 })
             })
-            .catch()
     }
 }
 
 export const loginAdminAction = (model) => {
     return (dispatch, getState, extraArgument) => {
-        loginContainer(loginAdmin(model))
+        return loginContainer(loginAdmin(model))
             .then(user => {
-                dispatch({
+                return dispatch({
                     type: LOGIN_ADMIN,
                     payload: user
                 })
             })
-            .catch()
     }
 }
 
-
-
-
 export const getAdminsAction = (query) => {
     return (dispatch, getState, extraArgument) => {
-        getAdmins(query)
+        return getAdmins(query)
             .then(users => {
-                dispatch(users);
-                dispatch({
+                return dispatch({
                     type: GET_ADMINS,
                     payload: users
                 })
             })
-            .catch()
     }
 }
 
 export const editAdminAction = (userId, model) => {
     return (dispatch, getState, extraArgument) => {
-        editAdmin(userId, model)
+        return editAdmin(userId, model)
             .then(user => {
-                dispatch({
+                return dispatch({
                     type: EDIT_ADMIN,
                     payload: user
                 })
             })
-            .catch()
     }
 }
 
 export const deleteAdminAction = (userEmail) => {
     return (dispatch, getState, extraArgument) => {
-        deleteAdmin(userEmail)
+        return deleteAdmin(userEmail)
             .then(res => {
-                dispatch({
+                return dispatch({
                     type: DELETE_ADMIN,
                     payload: res
                 })
             })
-            .catch()
     }
 }

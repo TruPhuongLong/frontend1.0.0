@@ -12,39 +12,36 @@ import {
 
 export const createOrderAction = (model) => {
     return (dispatch, getState, extraArgument) => {
-        createOrder(model)
+        return createOrder(model)
             .then(order => {
-                dispatch({
+                return dispatch({
                     type: CREATE_ORDER,
                     payload: order
                 })
             })
-            .catch()
     }
 }
 
 export const getOrdersAction = (query) => {
     return (dispatch, getState, extraArgument) => {
-        getOrders(query)
+        return getOrders(query)
             .then(orders => {
-                dispatch({
+                return dispatch({
                     type: GET_ORDERS,
                     payload: orders
                 })
             })
-            .catch()
     }
 }
 
 export const getOrdersByEmailAction = (email, query) => {
     return (dispatch, getState, extraArgument) => {
-        getOrdersByEmail(email, query)
+        return getOrdersByEmail(email, query)
             .then(orders => {
-                dispatch({
+                return dispatch({
                     type: GET_ORDERS_BY_EMAIL,
                     payload: orders
                 })
             })
-            .catch()
     }
 }

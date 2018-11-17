@@ -8,7 +8,6 @@ export const loginContainer = (login) => {
                 return user;
             }
         })
-        .catch(error => console.log(error))
 }
 
 export const logout = () => {

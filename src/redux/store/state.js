@@ -8,11 +8,15 @@ export const initState = {
         current: {}
     },
     authState: {
-        isAuth: false,
+        isAdmin: false,
         user: {}
     },
     userState: {
         list: [],
         current: {}
+    },
+    statusState: {
+        isLoading: false,
+        error: null
     }
 }

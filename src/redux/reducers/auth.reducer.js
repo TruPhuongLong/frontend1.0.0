@@ -1,21 +1,20 @@
-import { typeAction } from '../actions/type.action';
-import { initState } from '../store/state';
+import {initState} from '../store/state';
+import {
+    LOGIN_ADMIN
+} from '../actions/type.action';
+import {isAdmin} from '../../libs/funcHelp';
 
 export const AuthReducer = (state = initState.authState, action) => {
-    switch (action.type) {
-        case typeAction.LOGIN:
-            return {
-                ...state,
-                isAuth: action.payload.isAuth,
-                user: action.payload.user,
+    switch (action.type){
+        case LOGIN_ADMIN:
+            const user = action.payload;
+            if(user && isAdmin(user.role)){
+                return {
+                    isAdmin: true,
+                    user: action.payload
+                }
             }
-        
-        case typeAction.LOGOUT:
-            return {
-                ...state,
-                isAuth: action.payload.isAuth,
-                user: action.payload.user,
-            }
+            return state;
         default:
             return state;
     }

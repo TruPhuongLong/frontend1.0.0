@@ -4,7 +4,7 @@ export const LOGIN_USER = 'LOGIN_USER'
 export const SIGNUP_USER = 'SIGNUP_USER'
 export const GET_USERS = 'GET_USERS'
 
-//auth
+//admin
 export const LOGIN_ADMIN = 'LOGIN_ADMIN'
 export const SIGNUP_ADMIN = 'SIGNUP_ADMIN'
 export const GET_ADMINS = 'GET_ADMINS'

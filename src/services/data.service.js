@@ -7,13 +7,11 @@ import {KEY_FILE_UPLOAD} from '../libs/constant';
 export const get = (url) => {
     return axios.get(url)
         .then(res => res.data)
-        .catch(error => console.log(error));
 }
 
 export const post = (url, model) => {
     return axios.post(url, model)
         .then(res => res.data)
-        .catch(error => console.log(error));
 }
 
 
@@ -25,7 +23,6 @@ export const postForm = (url, model, files) => {
 export const put = (url, model) => {
     return axios.put(url, model)
         .then(res => res.data)
-        .catch(error => console.log(error));
 }
 
 export const putForm = (url, model, files) => {
@@ -36,7 +33,6 @@ export const putForm = (url, model, files) => {
 export const remove = (url) => {
     return axios.delete(url)
         .then(res => res.data)
-        .catch(error => console.log(error));
 }
 
 function cookForm (model, files) {

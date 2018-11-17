@@ -32,12 +32,17 @@ export class LoginForm extends React.Component {
         }
     }
 
+    onSubmit = (event) => {
+        event.preventDefault();
+        this.props.onSubmit(this.state.fields);
+    }
+
     render() {
         const { email, password } = this.state.fields;
         const { fieldErrors } = this.state;
         const { onSubmit } = this.props;
         return (
-            <form className="form-horizontal" onSubmit={onSubmit}>
+            <form className="form-horizontal" onSubmit={this.onSubmit}>
 
                 <div className="form-group" >
                     <div className="col-sm-2" style={this.styles.leftCol}>

@@ -1,13 +1,14 @@
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 
-import {rootReducer} from '../reducers/index';
-import {messageMiddleware} from '../middlewares/message.middleware';
+import {rootReducer} from '../reducers';
+import statusMiddleware from '../middlewares/status.middleware'
 
 export const store = createStore(
     rootReducer,
     applyMiddleware(
-        messageMiddleware,
-        thunk
+        logger,
+        thunk,
     )
 )

@@ -16,65 +16,60 @@ import {
 
 export const createProductAction = (model, files) => {
     return (dispatch, getState, extraArgument) => {
-        createProduct(model, files)
+        return createProduct(model, files)
             .then(product => {
-                dispatch({
+                return dispatch({
                     type: CREATE_PRODUCT,
                     payload: product
                 })
             })
-            .catch()
     }
 }
 
 export const getProductAction = (productId) => {
     return (dispatch, getState, extraArgument) => {
-        getProduct(productId)
+        return getProduct(productId)
             .then(product => {
-                dispatch({
+                return dispatch({
                     type: GET_PRODUCT,
                     payload: product
                 })
             })
-            .catch()
     }
 }
 
 export const getProductsAction = (query) => {
     return (dispatch, getState, extraArgument) => {
-        getProducts(query)
+        return getProducts(query)
             .then(products => {
-                dispatch({
+                return dispatch({
                     type: GET_PRODUCTS,
                     payload: products
                 })
             })
-            .catch()
     }
 }
 
 export const editProductAction = (productId, model) => {
     return (dispatch, getState, extraArgument) => {
-        editProduct(productId, model)
+        return editProduct(productId, model)
             .then(product => {
-                dispatch({
+                return dispatch({
                     type: EDIT_PRODUCT,
                     payload: product
                 })
             })
-            .catch()
     }
 }
 
 export const deleteProductAction = (productId) => {
     return (dispatch, getState, extraArgument) => {
-        deleteProduct(productId)
+        return deleteProduct(productId)
             .then(product => {
-                dispatch({
+                return dispatch({
                     type: DELETE_PRODUCT,
                     payload: product
                 })
             })
-            .catch()
     }
 }

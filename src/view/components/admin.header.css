@@ -1,0 +1,22 @@
+.admin-header {
+    padding: 25px 0px;
+}
+
+.admin-header img {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+    padding: 0px 5px;
+    box-sizing: content-box;
+}
+
+.admin-header button {
+    background-color: transparent;
+    border: none;
+    padding: 15px;
+}
+
+.admin-header button:not(.home):hover{
+    background-color: green;
+    color: white;
+}

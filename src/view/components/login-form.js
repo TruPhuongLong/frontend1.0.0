@@ -15,6 +15,16 @@ export class LoginForm extends React.Component {
         fieldErrors: {}
     }
 
+    resetState = () => {
+        this.setState({
+            fields: {
+                email: '',
+                password: '',
+            },
+            fieldErrors: {}
+        })
+    }
+
     onInputChanged = ({ name, value, errors }) => {
         const { fields, fieldErrors } = this.state;
         fields[name] = value;
@@ -34,13 +44,19 @@ export class LoginForm extends React.Component {
 
     onSubmit = (event) => {
         event.preventDefault();
-        this.props.onSubmit(this.state.fields);
+        this.props.onSubmit(this.state.fields)
+            .then(_ => {
+                if(!this.cancel) this.resetState()
+            })
+    }
+
+    componentWillUnmount(){
+        this.cancel = true
     }
 
     render() {
         const { email, password } = this.state.fields;
         const { fieldErrors } = this.state;
-        const { onSubmit } = this.props;
         return (
             <form className="form-horizontal" onSubmit={this.onSubmit}>
 
@@ -83,7 +99,7 @@ export class LoginForm extends React.Component {
                 <div className="form-group" >
                     <div className="col-sm-2"></div>
                     <div className="col-sm-10" style={{ textAlign: 'left' }}>
-                        <button type="submit" className="btn btn-primary" disabled={Object.keys(fieldErrors).length}>Login</button>
+                        <button type="submit" className="btn btn-primary" disabled={Object.keys(fieldErrors).length}>Submit</button>
                     </div>
                 </div>
 

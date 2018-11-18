@@ -34,7 +34,7 @@ export const KEY_FILE_UPLOAD = 'files';
 //server will get access_token value from key header
 export const HEADER_ACCESS_TOKEN = 'x-access-token';
 
-
+export const USER = 'USER';
 
 
 
@@ -56,5 +56,20 @@ export const ROLES = {
 export const QUERY = {
     separateForRange: '*!*!*',
     defaultPagination: 100
+}
+
+
+
+
+
+//MESSAGE:
+export const MESSAGE = {
+    loginSuccess: 'login success!',
+    loginFail: 'login fail',
+    signupSuccess: 'signup success!',
+    signupFail: 'signup fail',
+
+    success: 'success!',
+    fail: 'something went wrong...',
 }
 

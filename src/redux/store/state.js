@@ -1,22 +1,22 @@
 export const initState = {
     productState: {
         list: [],
-        current: {}
+        current: null
     },
     orderState: {
         list: [],
-        current: {}
+        current: null
     },
     authState: {
         isAdmin: false,
-        user: {}
+        user: null
     },
     userState: {
         list: [],
-        current: {}
+        current: null
     },
     statusState: {
         isLoading: false,
-        error: null
+        status: null
     }
 }

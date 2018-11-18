@@ -4,21 +4,23 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './styles.css'
 import {LoginForm} from '../components/login-form';
-import {loginAdminAction} from '../../redux/actions/user.action';
+import {signupAdminAction} from '../../redux/actions/user.action';
 import {dispatchWithLoading} from '../../libs/funcHelp'
 import AdminHeader from '../components/admin.header'
 
+class AdminSignup extends React.Component {
 
-class AdminLogin extends React.Component {
     onSubmit = (model) => {
-        return this.props.login(model)
+        console.log('=== signup new admin')
+        return this.props.signup(model)
     }
 
     render(){
         return (
             <div className="admin-container">
                 <div className="container">
-                    <AdminHeader /><br /><br /><br />
+                    <AdminHeader /><br />
+                    <h4>Add more admin with role secondary</h4><br /><br />
                     <LoginForm onSubmit={this.onSubmit}/>
                 </div>
             </div>
@@ -28,11 +30,11 @@ class AdminLogin extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        login: (model) => {
-            return dispatchWithLoading(dispatch, loginAdminAction(model))
+        signup: (model) => {
+            return dispatchWithLoading(dispatch, signupAdminAction(model))
         }
     }
 }
 
-export default connect(null, mapDispatchToProps)(AdminLogin)
+export default connect(null, mapDispatchToProps)(AdminSignup)
 

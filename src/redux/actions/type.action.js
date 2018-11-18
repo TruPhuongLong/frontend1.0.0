@@ -3,6 +3,10 @@
 export const LOGIN_USER = 'LOGIN_USER'
 export const SIGNUP_USER = 'SIGNUP_USER'
 export const GET_USERS = 'GET_USERS'
+export const SET_CURRENT_USER = 'SET_CURRENT_USER'
+
+//user and admin use same
+export const LOGOUT = 'LOGOUT'
 
 //admin
 export const LOGIN_ADMIN = 'LOGIN_ADMIN'
@@ -27,3 +31,4 @@ export const CREATE_ORDER = 'CREATE_ORDER'
 export const START_LOADING = 'START_LOADING'
 export const ERROR = 'ERROR'
 export const SUCCESS = 'SUCCESS'
+export const CLEAR_STATUS = 'CLEAR_STATUS'

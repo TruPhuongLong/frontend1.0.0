@@ -1,8 +1,11 @@
 import axios from 'axios';
 
 import {KEY_FILE_UPLOAD} from '../libs/constant';
+import {HEADER_ACCESS_TOKEN} from '../libs/constant'
 
 // in axios res.data = res.body
+axios.defaults.headers[HEADER_ACCESS_TOKEN] = localStorage.getItem(HEADER_ACCESS_TOKEN);
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 export const get = (url) => {
     return axios.get(url)
@@ -10,6 +13,7 @@ export const get = (url) => {
 }
 
 export const post = (url, model) => {
+    // console.log('=== post', axios.defaults.headers[HEADER_ACCESS_TOKEN])
     return axios.post(url, model)
         .then(res => res.data)
 }
@@ -50,3 +54,12 @@ function cookForm (model, files) {
 
     return fd;
 }
+
+
+/**
+ * const instance = axios.create({
+  baseURL: 'https://some-domain.com/api/',
+  timeout: 1000,
+  headers: {'X-Custom-Header': 'foobar'}
+});
+ */

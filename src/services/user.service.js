@@ -22,7 +22,7 @@ export const loginUser = (model) => {
 }
 
 export const getUsers = (query) => {
-    return get(URL_USERS + query)
+    return get(URL_USERS + (query || ''))
 }
 
 
@@ -40,7 +40,8 @@ export const signupAdmin = (model) => {
 
 // only primary admin can do:
 export const getAdmins = (query) => {
-    return get(URL_ADMIN_USERS + query)
+    const url = URL_ADMIN_USERS + (query || '')
+    return get(url)
 }
 
 export const editAdmin = (userId, model) => {

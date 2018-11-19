@@ -9,15 +9,20 @@ import {
     GET_ORDERS,
     GET_ORDERS_BY_EMAIL
 } from './type.action';
+import {MESSAGE} from '../../libs/constant'
 
 export const createOrderAction = (model) => {
     return (dispatch, getState, extraArgument) => {
         return createOrder(model)
             .then(order => {
-                return dispatch({
-                    type: CREATE_ORDER,
-                    payload: order
-                })
+                // dispatch({
+                //     type: CREATE_ORDER,
+                //     payload: order
+                // })
+                return MESSAGE.success;
+            })
+            .catch(_ => {
+                throw new Error(MESSAGE.fail)
             })
     }
 }
@@ -26,10 +31,14 @@ export const getOrdersAction = (query) => {
     return (dispatch, getState, extraArgument) => {
         return getOrders(query)
             .then(orders => {
-                return dispatch({
+                dispatch({
                     type: GET_ORDERS,
                     payload: orders
                 })
+                return MESSAGE.success;
+            })
+            .catch(_ => {
+                throw new Error(MESSAGE.fail)
             })
     }
 }
@@ -38,10 +47,14 @@ export const getOrdersByEmailAction = (email, query) => {
     return (dispatch, getState, extraArgument) => {
         return getOrdersByEmail(email, query)
             .then(orders => {
-                return dispatch({
+                dispatch({
                     type: GET_ORDERS_BY_EMAIL,
                     payload: orders
                 })
+                return MESSAGE.success;
+            })
+            .catch(_ => {
+                throw new Error(MESSAGE.fail)
             })
     }
 }

@@ -95,6 +95,7 @@ export const signupAdminAction = (model) => {
     return (dispatch, getState, extraArgument) => {
         return signupAdmin(model)
             .then(user => {
+                console.log('=== signup , get user: ', user)
                 //not need dispatch , it not need change state
                 // dispatch({
                 //     type: SIGNUP_ADMIN,

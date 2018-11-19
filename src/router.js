@@ -12,6 +12,7 @@ import AdminSecondaries from './view/admin.pages/admin.secondaries';
 import AdminProfile from './view/admin.pages/admin.profile';
 import AdminUsers from './view/admin.pages/admin.users';
 import AdminUser from './view/admin.pages/admin.user';
+import AdminCreateProduct from './view/admin.pages/admin.createProduct'
 
 import {isAdminPrimary} from './libs/funcHelp';
 
@@ -52,6 +53,10 @@ class Routes extends React.Component {
 
           <Route path='/admin/user' exact render={() => {
             return isAdmin ? <AdminUser /> : <Redirect to="/admin/login"/>
+          }}/>
+          
+          <Route path='/admin/createProduct' exact render={() => {
+            return isAdmin ? <AdminCreateProduct /> : <Redirect to="/admin/login"/>
           }}/>
 
         </Switch>

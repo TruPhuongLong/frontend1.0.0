@@ -13,15 +13,22 @@ import {
     EDIT_PRODUCT,
     DELETE_PRODUCT
 } from './type.action';
+import {
+    MESSAGE
+} from '../../libs/constant'
 
 export const createProductAction = (model, files) => {
     return (dispatch, getState, extraArgument) => {
         return createProduct(model, files)
             .then(product => {
-                return dispatch({
-                    type: CREATE_PRODUCT,
-                    payload: product
-                })
+                // dispatch({
+                //     type: CREATE_PRODUCT,
+                //     payload: product
+                // })
+                return MESSAGE.success;
+            })
+            .catch(_ => {
+                throw new Error(MESSAGE.fail)
             })
     }
 }
@@ -30,10 +37,14 @@ export const getProductAction = (productId) => {
     return (dispatch, getState, extraArgument) => {
         return getProduct(productId)
             .then(product => {
-                return dispatch({
+                dispatch({
                     type: GET_PRODUCT,
                     payload: product
                 })
+                return MESSAGE.success;
+            })
+            .catch(_ => {
+                throw new Error(MESSAGE.fail)
             })
     }
 }
@@ -42,10 +53,14 @@ export const getProductsAction = (query) => {
     return (dispatch, getState, extraArgument) => {
         return getProducts(query)
             .then(products => {
-                return dispatch({
+                dispatch({
                     type: GET_PRODUCTS,
                     payload: products
                 })
+                return MESSAGE.success;
+            })
+            .catch(_ => {
+                throw new Error(MESSAGE.fail)
             })
     }
 }
@@ -54,10 +69,14 @@ export const editProductAction = (productId, model) => {
     return (dispatch, getState, extraArgument) => {
         return editProduct(productId, model)
             .then(product => {
-                return dispatch({
+                dispatch({
                     type: EDIT_PRODUCT,
                     payload: product
                 })
+                return MESSAGE.success;
+            })
+            .catch(_ => {
+                throw new Error(MESSAGE.fail)
             })
     }
 }
@@ -66,10 +85,14 @@ export const deleteProductAction = (productId) => {
     return (dispatch, getState, extraArgument) => {
         return deleteProduct(productId)
             .then(product => {
-                return dispatch({
+                dispatch({
                     type: DELETE_PRODUCT,
                     payload: product
                 })
+                return MESSAGE.success;
+            })
+            .catch(_ => {
+                throw new Error(MESSAGE.fail)
             })
     }
 }

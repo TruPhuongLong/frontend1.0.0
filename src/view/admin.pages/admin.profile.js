@@ -51,7 +51,8 @@ class AdminProfile extends React.Component {
     onSubmit = (event) => {
         event.preventDefault();
         const {email, password} = this.state.fields;
-        this.props.editAdmin(this.props._id, {email, password})
+        const model = this.props.email === email ? {password} : {email, password}
+        this.props.editAdmin(this.props._id, model)
             .then(_ => {
                 if(!this.cancel) this.resetState()
             })

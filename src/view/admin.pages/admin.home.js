@@ -36,7 +36,7 @@ const AdminHome = (props) => {
     return (
         <div className="admin-container admin-home-container">
             <div className="container">
-                <AdminHeader />
+                <AdminHeader title="Home" />
                 
                 {managerAdmin}
                 

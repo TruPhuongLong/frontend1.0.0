@@ -16,7 +16,7 @@ export const EDIT_ADMIN = 'EDIT_ADMIN'
 export const DELETE_ADMIN = 'DELETE_ADMIN'
 
 //type for product
-export const GET_PRODUCTS = 'GET_PRODUCT_LIST'
+export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const GET_PRODUCT = 'GET_PRODUCT'
 export const CREATE_PRODUCT = 'CREATE_PRODUCT'
 export const EDIT_PRODUCT = 'EDIT_PRODUCT'

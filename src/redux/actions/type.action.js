@@ -21,6 +21,7 @@ export const GET_PRODUCT = 'GET_PRODUCT'
 export const CREATE_PRODUCT = 'CREATE_PRODUCT'
 export const EDIT_PRODUCT = 'EDIT_PRODUCT'
 export const DELETE_PRODUCT = 'DELETE_PRODUCT'
+export const SET_CURRENT_PRODUCT = 'SET_CURRENT_PRODUCT'
 
 //type for order
 export const GET_ORDERS = 'GET_ORDERS'

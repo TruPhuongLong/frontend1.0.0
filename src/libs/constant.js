@@ -1,23 +1,25 @@
-export const URL_BASE = 'http://localhost:2345/api';
+export const URL_BASE ='http://localhost:2345'
+
+export const URL_API_BASE = URL_BASE + '/api';
 
 //regular user url:
-export const URL_LOGIN = URL_BASE + '/login';
-export const URL_SIGNUP = URL_BASE + '/signup';
-export const URL_USERS = URL_BASE + '/users';
+export const URL_LOGIN = URL_API_BASE + '/login';
+export const URL_SIGNUP = URL_API_BASE + '/signup';
+export const URL_USERS = URL_API_BASE + '/users';
 
 //url admin:
-export const URL_ADMIN_BASE = URL_BASE + '/admin'; // this url use for put /userId and delete /userEmail too.
+export const URL_ADMIN_BASE = URL_API_BASE + '/admin'; // this url use for put /userId and delete /userEmail too.
 export const URL_ADMIN_LOGIN = URL_ADMIN_BASE + '/login';
 export const URL_ADMIN_SIGNUP_WITH_PERMIT = URL_ADMIN_BASE + '/signupWithPermit';
 export const URL_ADMIN_USERS = URL_ADMIN_BASE + '/users';
 
 //Product
-export const URL_PRODUCT_BASE = URL_BASE + '/product';
+export const URL_PRODUCT_BASE = URL_API_BASE + '/product';
 export const URL_PRODUCTS = URL_PRODUCT_BASE + 's';
 
 //Order:
-export const URL_ORDER_BASE = URL_BASE + '/order';
-export const URL_ORDERS = URL_BASE + 's';
+export const URL_ORDER_BASE = URL_API_BASE + '/order';
+export const URL_ORDERS = URL_API_BASE + 's';
 
 
 

@@ -4,13 +4,15 @@ import {
     GET_PRODUCT,
     CREATE_PRODUCT,
     EDIT_PRODUCT,
-    DELETE_PRODUCT
+    DELETE_PRODUCT,
+    SET_CURRENT_PRODUCT
 } from '../actions/type.action'
 
 export const ProductReducer = (state = initState.productState, action) => {
     switch(action.type){
         case GET_PRODUCT:
         case EDIT_PRODUCT:
+        case SET_CURRENT_PRODUCT:
             return {
                 ...state,
                 current: action.payload

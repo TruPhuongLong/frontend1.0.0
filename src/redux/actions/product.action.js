@@ -11,12 +11,14 @@ import {
     GET_PRODUCT,
     CREATE_PRODUCT,
     EDIT_PRODUCT,
-    DELETE_PRODUCT
+    DELETE_PRODUCT,
+    SET_CURRENT_PRODUCT
 } from './type.action';
 import {
     MESSAGE
 } from '../../libs/constant'
 
+// test ok
 export const createProductAction = (model, files) => {
     return (dispatch, getState, extraArgument) => {
         return createProduct(model, files)
@@ -49,6 +51,7 @@ export const getProductAction = (productId) => {
     }
 }
 
+//test ok
 export const getProductsAction = (query) => {
     return (dispatch, getState, extraArgument) => {
         return getProducts(query)
@@ -65,9 +68,9 @@ export const getProductsAction = (query) => {
     }
 }
 
-export const editProductAction = (productId, model) => {
+export const editProductAction = (productId, model, files) => {
     return (dispatch, getState, extraArgument) => {
-        return editProduct(productId, model)
+        return editProduct(productId, model, files) 
             .then(product => {
                 dispatch({
                     type: EDIT_PRODUCT,
@@ -96,3 +99,9 @@ export const deleteProductAction = (productId) => {
             })
     }
 }
+
+//test ok
+export const setCurrentProductAction = (product) => ({
+    type: SET_CURRENT_PRODUCT,
+    payload: product
+})

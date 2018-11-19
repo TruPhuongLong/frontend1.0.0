@@ -10,11 +10,11 @@ export const getProduct = (productId) => {
 }
 
 export const getProducts = (query) => {
-    return get(URL_PRODUCTS + query);
+    return get(URL_PRODUCTS + (query || ''));
 }
 
-export const editProduct = (productId, model) => {
-    return putForm(URL_PRODUCT_BASE + '/' + productId, model)
+export const editProduct = (productId, model, files) => {
+    return putForm(URL_PRODUCT_BASE + '/' + productId, model, files)
 }
 
 export const deleteProduct = (productId) => {

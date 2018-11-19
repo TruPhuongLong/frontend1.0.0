@@ -13,12 +13,15 @@ import AdminProfile from './view/admin.pages/admin.profile';
 import AdminUsers from './view/admin.pages/admin.users';
 import AdminUser from './view/admin.pages/admin.user';
 import AdminCreateProduct from './view/admin.pages/admin.createProduct'
+import AdminProducts from './view/admin.pages/admin.products'
+import AdminOrders from './view/admin.pages/admin.orders'
+import AdminEditProduct from './view/admin.pages/admin.editProduct'
 
 import {isAdminPrimary} from './libs/funcHelp';
 
 class Routes extends React.Component {
   render(){
-    const {isAdmin, user} = this.props;
+    const {isAdmin, user, currentProduct, currentUserCustomer} = this.props;
     return (
       <Switch>
           <Route path="/" exact component={Home} />
@@ -52,11 +55,23 @@ class Routes extends React.Component {
           }}/>
 
           <Route path='/admin/user' exact render={() => {
-            return isAdmin ? <AdminUser /> : <Redirect to="/admin/login"/>
+            return isAdmin && currentUserCustomer ? <AdminUser /> : <Redirect to="/admin/login"/>
           }}/>
           
           <Route path='/admin/createProduct' exact render={() => {
             return isAdmin ? <AdminCreateProduct /> : <Redirect to="/admin/login"/>
+          }}/>
+          
+          <Route path='/admin/products' exact render={() => {
+            return isAdmin ? <AdminProducts /> : <Redirect to="/admin/login"/>
+          }}/>
+
+          <Route path='/admin/editProduct' exact render={() => {
+            return isAdmin && currentProduct ? <AdminEditProduct /> : <Redirect to="/admin/products"/>
+          }}/>
+          
+          <Route path='/admin/orders' exact render={() => {
+            return isAdmin ? <AdminOrders /> : <Redirect to="/admin/login"/>
           }}/>
 
         </Switch>
@@ -66,7 +81,9 @@ class Routes extends React.Component {
 
 const mapStateToProps = (state) => {
   const {isAdmin, user} = state.authState;
-  return {isAdmin, user};
+  const currentProduct = state.productState.current
+  const currentUserCustomer = state.userState.current
+  return {isAdmin, user, currentProduct, currentUserCustomer};
 }
 
 export default withRouter(connect(mapStateToProps)(Routes));

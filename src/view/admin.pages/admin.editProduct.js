@@ -1,37 +1,52 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import {withRouter} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './styles.css'
 import { Image } from '../components/Image';
 import { dispatchWithLoading } from '../../libs/funcHelp'
-import { createProductAction } from '../../redux/actions/product.action'
+import { editProductAction } from '../../redux/actions/product.action'
 import { Field } from '../components/core/field'
 import AdminHeader from '../components/admin.header';
+import { URL_BASE } from '../../libs/constant'
 
-class AdminCreateProduct extends React.Component {
+class AdminEditProduct extends React.Component {
 
-    state = {
-        fields: {
-            name: '',
-            price: '',
-            unitPrice: '',
-            content: '',
-            files: [],
-            imageUrls: []
-        },
-        fieldErrors: {}
+    constructor(props) {
+        super(props)
+        const { name, price, unitPrice, content } = props.current
+        const imageUrlsFromServer = props.current.imageUrls;
+        this.state = {
+            fields: {
+                name: name,
+                price: '' + price,
+                unitPrice: unitPrice,
+                content: content,
+                files: [],
+                imageUrls: [],
+                imageUrlsFromServer: imageUrlsFromServer || []
+            },
+            fieldErrors: {}
+        }
     }
 
+    // componentDidMount(){
+    //     console.log('=== componentDidMount', this.state.fieldErrors)
+    // }
+
     resetState = () => {
+        const { name, price, unitPrice, content } = this.props.current
+        const imageUrlsFromServer = this.props.current.imageUrls || [];
         this.setState({
             fields: {
-                name: '',
-                price: '',
-                unitPrice: '',
-                content: '',
+                name: name,
+                price: '' + price,
+                unitPrice: unitPrice,
+                content: content,
                 files: [],
-                imageUrls: []
+                imageUrls: [],
+                imageUrlsFromServer: imageUrlsFromServer || []
             },
             fieldErrors: {}
         })
@@ -71,12 +86,15 @@ class AdminCreateProduct extends React.Component {
 
     onSubmit = (event) => {
         event.preventDefault();
-        console.log('submit')
+        // console.log('submit')
         const { name, price, unitPrice, content } = this.state.fields
-        const model = { name, price, unitPrice, content }
-        this.props.createProduct(model, this.state.fields.files)
+        const imageUrls = this.state.fields.imageUrlsFromServer
+        console.log(imageUrls)
+        const model = { name, price, unitPrice, content, imageUrls }
+        this.props.editProduct(this.props.current._id, model, this.state.fields.files)
             .then(_ => {
                 this.resetState();
+                this.props.history.push('/admin/products')
             })
     }
 
@@ -107,14 +125,26 @@ class AdminCreateProduct extends React.Component {
         }))
     }
 
+    _removeImageUrlsFromServer = (index) => {
+        console.log(index);
+        const { imageUrlsFromServer } = this.state.fields;
+        const _imageUrlsFromServer = imageUrlsFromServer.filter((_, _index) => _index !== index);
+        this.setState(state => ({
+            fields: {
+                ...state.fields,
+                imageUrlsFromServer: _imageUrlsFromServer,
+            }
+        }))
+    }
+
     render() {
-        const { name, price, unitPrice, content, files, imageUrls } = this.state.fields;
+        const { name, price, unitPrice, content, files, imageUrls, imageUrlsFromServer } = this.state.fields;
         const {fieldErrors} = this.state;
         return (
             <div className="admin-container">>
             <div className="container">
 
-                    <AdminHeader title="Product post" />
+                    <AdminHeader title="Product Edit" />
 
                     <form className="form-horizontal" onSubmit={this.onSubmit}>
 
@@ -216,8 +246,13 @@ class AdminCreateProduct extends React.Component {
                             <div className="col-sm-offset-2 col-sm-10" style={{ textAlign: 'start' }}>
                                 <div style={inline}>
                                     {
+                                        imageUrlsFromServer.map((url, index) => {
+                                            return <Image src={URL_BASE + '/' + url} index={index} key={'1...' + index} remove={() => this._removeImageUrlsFromServer(index)} />
+                                        })
+                                    }
+                                    {
                                         imageUrls.map((url, index) => {
-                                            return <Image src={url} index={index} key={index} remove={this._remove} />
+                                            return <Image src={url} index={index} key={'2...' + index} remove={() => this._remove(index)} />
                                         })
                                     }
                                 </div>
@@ -244,16 +279,17 @@ const inline = {
     flexWrap: 'wrap',
 }
 
-// const mapStateToProps = (state) => {
-
-// }
+const mapStateToProps = (state) => {
+    const { list, current } = state.productState
+    return { list, current }
+}
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createProduct: (model, files) => {
-            return dispatchWithLoading(dispatch, createProductAction(model, files))
+        editProduct: (productId, model, files) => {
+            return dispatchWithLoading(dispatch, editProductAction(productId, model, files))
         }
     }
 }
 
-export default connect(null, mapDispatchToProps)(AdminCreateProduct);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AdminEditProduct));

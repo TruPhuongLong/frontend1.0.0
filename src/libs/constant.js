@@ -19,7 +19,7 @@ export const URL_PRODUCTS = URL_PRODUCT_BASE + 's';
 
 //Order:
 export const URL_ORDER_BASE = URL_API_BASE + '/order';
-export const URL_ORDERS = URL_API_BASE + 's';
+export const URL_ORDERS = URL_ORDER_BASE + 's';
 
 
 

@@ -7,7 +7,8 @@ import {
 import {
     CREATE_ORDER,
     GET_ORDERS,
-    GET_ORDERS_BY_EMAIL
+    GET_ORDERS_BY_EMAIL,
+    SET_CURRENT_ORDER
 } from './type.action';
 import {MESSAGE} from '../../libs/constant'
 
@@ -27,6 +28,7 @@ export const createOrderAction = (model) => {
     }
 }
 
+//test ok
 export const getOrdersAction = (query) => {
     return (dispatch, getState, extraArgument) => {
         return getOrders(query)
@@ -58,3 +60,8 @@ export const getOrdersByEmailAction = (email, query) => {
             })
     }
 }
+
+export const setCurrentOrderAction = (order) => ({
+    type: SET_CURRENT_ORDER,
+    payload: order
+})

@@ -7,7 +7,7 @@ import './styles.css'
 import AdminHeader from '../components/admin.header';
 import {getProductsAction, setCurrentProductAction, deleteProductAction} from '../../redux/actions/product.action';
 import {dispatchWithLoading} from '../../libs/funcHelp';
-import {URL_BASE} from '../../libs/constant'
+import ListProducts from '../components/list.products'
 
 class AdminProducts extends React.Component {
 
@@ -37,56 +37,7 @@ class AdminProducts extends React.Component {
                 <div className="container">
                     <AdminHeader title="List products"/>
   
-                    <div className="table-responsive">          
-                        <table className="table table-hover table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Image</th>
-                                    <th>Name</th>
-                                    <th>Price</th>
-                                    <th>Unit</th>
-                                    <th>Content</th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    list.map((product, index) => {
-                                        return (
-                                            <tr key={index}>
-                                                <td>{index + 1}</td>
-                                                <td>
-                                                    <img 
-                                                        src={product.imageUrls && (URL_BASE + '/' + product.imageUrls[0])} 
-                                                        alt="" 
-                                                        style={{width: '100px', height: '100px', objectFit: 'contain'}}
-                                                    />
-                                                </td>
-                                                <td>{product.name}</td>
-                                                <td>{product.price}</td>
-                                                <td>{product.unitPrice}</td>
-                                                <td>{product.content}</td>
-                                                <td>
-                                                    <button 
-                                                        className="btn btn-success"
-                                                        onClick={() => this.onClickEdit(product)}
-                                                    >Edit</button>
-                                                </td>
-                                                <td>
-                                                    <button 
-                                                        className="btn btn-danger"
-                                                        onClick={() => this.onClickDelete(product)}
-                                                    >Delete</button>
-                                                </td>
-                                            </tr>
-                                        )
-                                    })
-                                }
-                            </tbody>
-                        </table>
-                    </div>
+                    <ListProducts list={list} onClickEdit={this.onClickEdit} onClickDelete={this.onClickDelete} />
                 </div>
             </div>
         )

@@ -15,13 +15,14 @@ import AdminUser from './view/admin.pages/admin.user';
 import AdminCreateProduct from './view/admin.pages/admin.createProduct'
 import AdminProducts from './view/admin.pages/admin.products'
 import AdminOrders from './view/admin.pages/admin.orders'
+import AdminOrder from './view/admin.pages/admin.order'
 import AdminEditProduct from './view/admin.pages/admin.editProduct'
 
 import {isAdminPrimary} from './libs/funcHelp';
 
 class Routes extends React.Component {
   render(){
-    const {isAdmin, user, currentProduct, currentUserCustomer} = this.props;
+    const {isAdmin, user, currentProduct, currentUserCustomer, currentOrder} = this.props;
     return (
       <Switch>
           <Route path="/" exact component={Home} />
@@ -55,7 +56,7 @@ class Routes extends React.Component {
           }}/>
 
           <Route path='/admin/user' exact render={() => {
-            return isAdmin && currentUserCustomer ? <AdminUser /> : <Redirect to="/admin/login"/>
+            return isAdmin ? (currentUserCustomer ? <AdminUser /> : <Redirect to="/admin/users"/>) : <Redirect to="/admin/login"/>
           }}/>
           
           <Route path='/admin/createProduct' exact render={() => {
@@ -67,13 +68,16 @@ class Routes extends React.Component {
           }}/>
 
           <Route path='/admin/editProduct' exact render={() => {
-            return isAdmin && currentProduct ? <AdminEditProduct /> : <Redirect to="/admin/products"/>
+            return isAdmin ? (currentProduct ? <AdminEditProduct /> : <Redirect to="/admin/products"/>) : <Redirect to="/admin/login"/>
           }}/>
           
           <Route path='/admin/orders' exact render={() => {
             return isAdmin ? <AdminOrders /> : <Redirect to="/admin/login"/>
           }}/>
-
+          
+          <Route path='/admin/order' exact render={() => {
+            return isAdmin ? (currentOrder ? <AdminOrder /> : <Redirect to="/admin/orders"/>) : <Redirect to="/admin/login"/>
+          }}/>
         </Switch>
     )
   }
@@ -83,7 +87,8 @@ const mapStateToProps = (state) => {
   const {isAdmin, user} = state.authState;
   const currentProduct = state.productState.current
   const currentUserCustomer = state.userState.current
-  return {isAdmin, user, currentProduct, currentUserCustomer};
+  const currentOrder = state.orderState.current
+  return {isAdmin, user, currentProduct, currentUserCustomer, currentOrder};
 }
 
 export default withRouter(connect(mapStateToProps)(Routes));

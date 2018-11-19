@@ -7,6 +7,7 @@ import './styles.css'
 import AdminHeader from '../components/admin.header';
 import {getUsersAction, setCurrentUserAction} from '../../redux/actions/user.action';
 import {dispatchWithLoading} from '../../libs/funcHelp';
+import ListUsers from '../components/list.users'
 
 
 class AdminUsers extends React.Component {
@@ -31,41 +32,7 @@ class AdminUsers extends React.Component {
                 <div className="container">
                     <AdminHeader title="List users"/>
   
-                    <div className="table-responsive">          
-                        <table className="table table-hover table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone Number</th>
-                                    <th>Address</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    list.map((user, index) => {
-                                        return (
-                                            <tr key={index}>
-                                                <td>{index + 1}</td>
-                                                <td>{user.name}</td>
-                                                <td>{user.email}</td>
-                                                <td>{user.phoneNumber}</td>
-                                                <td>{user.address}</td>
-                                                <td>
-                                                    <button 
-                                                        className="btn btn-success"
-                                                        onClick={() => this.onClickDetail(user)}
-                                                    >Detail</button>
-                                                </td>
-                                            </tr>
-                                        )
-                                    })
-                                }
-                            </tbody>
-                        </table>
-                    </div>
+                    <ListUsers list={list} onClickDetail={this.onClickDetail} />
                 </div>
             </div>
         )

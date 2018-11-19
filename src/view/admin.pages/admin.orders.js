@@ -5,23 +5,24 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './styles.css'
 import AdminHeader from '../components/admin.header';
-import {} from '../../redux/actions/order.action';
+import {getOrdersAction, setCurrentOrderAction} from '../../redux/actions/order.action';
 import {dispatchWithLoading} from '../../libs/funcHelp';
+import ListOrders from '../components/list.orders';
 
 
 class AdminOrders extends React.Component {
 
     componentDidMount(){
-        //request list products
-        // this.props.getProducts()
+        //request list orders
+        this.props.getOrders()
     }
 
-    onClickDetail = (product) => {
+    onClickDetail = (order) => {
         //save current user in global state
-        // this.props.setCurrentUser(user)
+        this.props.setCurrentOrder(order)
 
-        // // push to detail page
-        // this.props.history.push('/admin/user')
+        // push to detail page
+        this.props.history.push('/admin/order')
     }
 
     render(){
@@ -29,51 +30,11 @@ class AdminOrders extends React.Component {
         return (
             <div className="admin-container">
                 <div className="container">
-                    <AdminHeader title="List products"/>
+                
+                    <AdminHeader title="List orders"/>
+
+                    <ListOrders list={list} onClickDetail={this.onClickDetail} />
   
-                    <div className="table-responsive">          
-                        <table className="table table-hover table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Image</th>
-                                    <th>Name</th>
-                                    <th>Price</th>
-                                    <th>Unit</th>
-                                    <th>Content</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    list.map((product, index) => {
-                                        return (
-                                            <tr key={index}>
-                                                <td>{index + 1}</td>
-                                                <td>
-                                                    <img 
-                                                        src={product.imageUrls && product.imageUrls[0]} 
-                                                        alt="" 
-                                                        style={{width: '100px', height: '100px', objectFit: 'contain'}}
-                                                    />
-                                                </td>
-                                                <td>{product.name}</td>
-                                                <td>{product.price}</td>
-                                                <td>{product.unitPrice}</td>
-                                                <td>{product.content}</td>
-                                                <td>
-                                                    <button 
-                                                        className="btn btn-success"
-                                                        onClick={() => this.onClickDetail(product)}
-                                                    >Detail</button>
-                                                </td>
-                                            </tr>
-                                        )
-                                    })
-                                }
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
             </div>
         )
@@ -87,12 +48,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // getProducts: (query) => {
-        //     return dispatchWithLoading(dispatch, getProductsAction(query))
-        // },
-        // setCurrentProduct: (product) => {
-        //     return dispatch(setCurrentProductAction(product))
-        // }
+        getOrders: (query) => {
+            return dispatchWithLoading(dispatch, getOrdersAction(query))
+        },
+        setCurrentOrder: (order) => {
+            return dispatch(setCurrentOrderAction(order))
+        }
     }
 }
 

@@ -6,9 +6,9 @@ export const createOrder = (model) => {
 }
 
 export const getOrders = (query) => {
-    return get(URL_ORDERS + query)
+    return get(URL_ORDERS + (query || ''))
 }
 
 export const getOrdersByEmail = (email, query) => {
-    return get(URL_ORDERS + '/' + email + query)
+    return get(URL_ORDERS + '/' + email + (query || ''))
 }

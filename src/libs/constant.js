@@ -21,6 +21,14 @@ export const URL_PRODUCTS = URL_PRODUCT_BASE + 's';
 export const URL_ORDER_BASE = URL_API_BASE + '/order';
 export const URL_ORDERS = URL_ORDER_BASE + 's';
 
+//campagn:
+export const URL_CAMPAIGN_BASE = URL_API_BASE + '/campagn';
+export const URL_CAMPAIGNS = URL_CAMPAIGN_BASE + 's';
+
+//campagnRegistration
+export const URL_CAMPAIGNREGISTRATION_BASE = URL_API_BASE + '/campagnRegistration';
+export const URL_CAMPAIGNREGISTRATIONS = URL_CAMPAIGNREGISTRATION_BASE + 's';
+
 
 
 

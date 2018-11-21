@@ -26,7 +26,6 @@ export const getUsers = (query) => {
 }
 
 
-
 //admin
 
 export const loginAdmin = (model) => {

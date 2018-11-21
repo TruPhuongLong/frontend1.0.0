@@ -6,6 +6,7 @@ import './styles.css'
 import {ButtonElipse} from '../components/core/button-elipse';
 import AdminHeader from  '../components/admin.header'
 import {isAdminPrimary} from '../../libs/funcHelp'
+import {AdminCampaign} from '../components/admin.campagn'
 
 const AdminHome = (props) => {
 
@@ -37,6 +38,8 @@ const AdminHome = (props) => {
         <div className="admin-container admin-home-container">
             <div className="container">
                 <AdminHeader title="Home" />
+
+                <AdminCampaign />
                 
                 {managerAdmin}
                 
@@ -79,11 +82,6 @@ const AdminHome = (props) => {
                         </ButtonElipse>
                     </div>
                 </div>
-
-
-
-
-
             </div>
         </div>
     )

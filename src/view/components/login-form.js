@@ -99,7 +99,11 @@ export class LoginForm extends React.Component {
                 <div className="form-group" >
                     <div className="col-sm-2"></div>
                     <div className="col-sm-10" style={{ textAlign: 'left' }}>
-                        <button type="submit" className="btn btn-primary" disabled={Object.keys(fieldErrors).length}>Submit</button>
+                        <button 
+                            className="btn btn-primary" 
+                            disabled={Object.keys(fieldErrors).length}
+                            onClick={this.onSubmit}
+                        >Submit</button>
                     </div>
                 </div>
 

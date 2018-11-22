@@ -1,17 +1,17 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './styles.css'
 import AdminHeader from '../components/admin.header';
-import {getProductsAction, setCurrentProductAction, deleteProductAction} from '../../redux/actions/product.action';
-import {dispatchWithLoading} from '../../libs/funcHelp';
+import { getProductsAction, setCurrentProductAction, deleteProductAction } from '../../redux/actions/product.action';
+import { dispatchWithLoading } from '../../libs/funcHelp';
 import ListProducts from '../components/list.products'
 
 class AdminProducts extends React.Component {
 
-    componentDidMount(){
+    componentDidMount() {
         //request list products
         this.props.getProducts()
     }
@@ -25,19 +25,32 @@ class AdminProducts extends React.Component {
     }
 
     onClickDelete = (product) => {
-        const {getProducts, deleteProduct} = this.props;
+        const { getProducts, deleteProduct } = this.props;
         deleteProduct(product._id)
             .then(_ => getProducts())
     }
 
-    render(){
-        const {list} = this.props
+    onClickCampaign = (product) => {
+        //save current user in global state
+        this.props.setCurrentProduct(product)
+
+        // push to detail page
+        this.props.history.push('/admin/createCampaign')
+    }
+
+    render() {
+        const { list } = this.props
         return (
             <div className="admin-container">
                 <div className="container">
-                    <AdminHeader title="List products"/>
-  
-                    <ListProducts list={list} onClickEdit={this.onClickEdit} onClickDelete={this.onClickDelete} />
+                    <AdminHeader title="List products" />
+
+                    <ListProducts
+                        list={list}
+                        onClickEdit={this.onClickEdit}
+                        onClickDelete={this.onClickDelete}
+                        onClickCampaign={this.onClickCampaign}
+                    />
                 </div>
             </div>
         )
@@ -45,8 +58,8 @@ class AdminProducts extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    const {list} = state.productState;
-    return {list}
+    const { list } = state.productState;
+    return { list }
 }
 
 const mapDispatchToProps = (dispatch) => {

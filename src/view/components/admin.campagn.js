@@ -1,31 +1,48 @@
 import React from 'react'
 import socket from '../../services/socketIO.service'
-import {URL_CAMPAIGNS} from '../../libs/constant'
+import { URL_CAMPAIGNS } from '../../libs/constant'
 import axios from 'axios';
 
-export const AdminCampaign = () => {
-    socket.on('server-to-client', data => {
-        console.log(data)
-    })
+export class AdminCampaign extends React.Component {
 
-    const send = (mes) => {
-        socket.emit('client-to-server', mes || "hi server");
+    constructor(props) {
+        super(props)
+
+        this.input = React.createRef()
+
+        socket.on('stc-updateCampaign', campaign => {
+            console.log('=== quantity change: ', campaign.quantity)
+        })
     }
 
-    const getCampaign = () => {
-        axios.get(URL_CAMPAIGNS)
-            .then(docs => {
-                console.log(docs.data)
-            })
+
+
+
+    send = () => {
+        const num = this.input.current.value
+        const campaign = { quantity: num }
+        // console.log(campaign)
+        socket.emit('cts-updateCampaign', campaign);
     }
 
-    return (
-        <div>
-            <h1>AdminCampaign</h1>
+    // const getCampaign = () => {
+    //     axios.get(URL_CAMPAIGNS)
+    //         .then(docs => {
+    //             console.log(docs.data)
+    //         })
+    // }
+
+    render() {
+        return (
             <div>
-                <button onClick={() => send()}>Send</button>
-                <button onClick={getCampaign}>get campaign</button>
+                <h1>AdminCampaign</h1>
+                <div>
+                    <input ref={this.input} />
+                    <button onClick={this.send}>Send</button>
+                    {/* <button onClick={getCampaign}>get campaign</button> */}
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
+
 }

@@ -4,22 +4,22 @@ import {
     URL_CAMPAIGNS
 } from '../libs/constant'
 
-const createCampaign = (model) => {
+export const createCampaign = (model) => {
     return post(URL_CAMPAIGN_BASE, model)
 }
 
-const getCampaign = (id) => {
+export const getCampaign = (id) => {
     return get(URL_CAMPAIGN_BASE + '/' + id)
 }
 
-const getCampaigns = (query) => {
+export const getCampaigns = (query) => {
     return get(URL_CAMPAIGNS, (query || ''))
 }
 
-const editCampaign = (id, model) => {
+export const editCampaign = (id, model) => {
     return put(URL_CAMPAIGN_BASE + '/' + id, model)
 }
 
-const deleteCampaign = (id) => {
+export const deleteCampaign = (id) => {
     return remove(URL_CAMPAIGN_BASE + '/' + id)
 }

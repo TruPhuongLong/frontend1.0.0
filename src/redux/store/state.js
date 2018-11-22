@@ -1,4 +1,12 @@
 export const initState = {
+    campaignState: {
+        list: [],
+        current: null
+    },
+    campaignRegistrationState: {
+        list: [],
+        current: null
+    },
     productState: {
         list: [],
         current: null

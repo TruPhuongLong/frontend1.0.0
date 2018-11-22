@@ -17,6 +17,8 @@ import AdminProducts from './view/admin.pages/admin.products'
 import AdminOrders from './view/admin.pages/admin.orders'
 import AdminOrder from './view/admin.pages/admin.order'
 import AdminEditProduct from './view/admin.pages/admin.editProduct'
+import AdminCreateCampaign from './view/admin.pages/admin.createCampaign'
+
 
 import {isAdminPrimary} from './libs/funcHelp';
 
@@ -59,6 +61,7 @@ class Routes extends React.Component {
             return isAdmin ? (currentUserCustomer ? <AdminUser /> : <Redirect to="/admin/users"/>) : <Redirect to="/admin/login"/>
           }}/>
           
+          //Product
           <Route path='/admin/createProduct' exact render={() => {
             return isAdmin ? <AdminCreateProduct /> : <Redirect to="/admin/login"/>
           }}/>
@@ -70,7 +73,12 @@ class Routes extends React.Component {
           <Route path='/admin/editProduct' exact render={() => {
             return isAdmin ? (currentProduct ? <AdminEditProduct /> : <Redirect to="/admin/products"/>) : <Redirect to="/admin/login"/>
           }}/>
-          
+
+          <Route path='/admin/createCampaign' exact render={() => {
+            return isAdmin ? (currentProduct ? <AdminCreateCampaign /> : <Redirect to="/admin/products"/>) : <Redirect to="/admin/login"/>
+          }}/>
+
+          //order
           <Route path='/admin/orders' exact render={() => {
             return isAdmin ? <AdminOrders /> : <Redirect to="/admin/login"/>
           }}/>
@@ -78,6 +86,8 @@ class Routes extends React.Component {
           <Route path='/admin/order' exact render={() => {
             return isAdmin ? (currentOrder ? <AdminOrder /> : <Redirect to="/admin/orders"/>) : <Redirect to="/admin/login"/>
           }}/>
+          
+          
         </Switch>
     )
   }

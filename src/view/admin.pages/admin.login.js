@@ -29,6 +29,7 @@ class AdminLogin extends React.Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         login: (model) => {
+            console.log("=== login from admin.login.js")
             return dispatchWithLoading(dispatch, loginAdminAction(model))
         }
     }

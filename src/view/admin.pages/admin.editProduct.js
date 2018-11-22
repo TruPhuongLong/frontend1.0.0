@@ -151,11 +151,6 @@ class AdminEditProduct extends React.Component {
                         <div className="form-group">
                             <label htmlFor="product-name" className="col-sm-2">Name</label>
                             <div className="col-sm-10">
-                                {/* <input
-                                    id="product-name"
-                                    className="form-control"
-                                    ref={input => this.name = input}
-                                /> */}
                                 <Field type="text"
                                     placeholder="@name"
                                     className="form-control"
@@ -172,11 +167,6 @@ class AdminEditProduct extends React.Component {
                         <div className="form-group">
                             <label htmlFor="product-price" className="col-sm-2">Price</label>
                             <div className="col-sm-10">
-                                {/* <input
-                                    className="form-control"
-                                    id="product-price"
-                                    ref={input => this.price = input}
-                                /> */}
                                 <Field type="text"
                                     placeholder="@price"
                                     className="form-control"
@@ -193,11 +183,6 @@ class AdminEditProduct extends React.Component {
                         <div className="form-group">
                             <label htmlFor="product-unit-price" className="col-sm-2">Unit Price</label>
                             <div className="col-sm-10">
-                                {/* <input
-                                    className="form-control"
-                                    id="product-unit-price"
-                                    ref={input => this.unitPrice = input}
-                                /> */}
                                 <Field type="text"
                                     placeholder="@unit price"
                                     className="form-control"
@@ -218,7 +203,6 @@ class AdminEditProduct extends React.Component {
                                     className="form-control"
                                     id="product-content"
                                     rows="10"
-                                    // ref={input => this.content = input}
                                     name="content"
                                     value={content}
                                     onChange={this.onTextareaChange}

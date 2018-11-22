@@ -1,4 +1,4 @@
-export const URL_BASE ='http://localhost:2345'
+export const URL_BASE = process.env.NODE_ENV === 'production' ? 'http://icon.deals' : 'http://localhost:2345'
 
 export const URL_API_BASE = URL_BASE + '/api';
 

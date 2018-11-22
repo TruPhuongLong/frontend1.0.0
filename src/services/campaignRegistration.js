@@ -4,22 +4,22 @@ import {
     URL_CAMPAIGNREGISTRATIONS
 } from '../libs/constant'
 
-const createCampaignRegistration = (model) => {
+export const createCampaignRegistration = (model) => {
     return post(URL_CAMPAIGNREGISTRATION_BASE, model)
 }
 
-const getCampaignRegistration = (id) => {
+export const getCampaignRegistration = (id) => {
     return get(URL_CAMPAIGNREGISTRATION_BASE + '/' + id)
 }
 
-const getCampaignRegistrations = (query) => {
+export const getCampaignRegistrations = (query) => {
     return get(URL_CAMPAIGNREGISTRATIONS, (query || ''))
 }
 
-const editCampaignRegistration = (id, model) => {
+export const editCampaignRegistration = (id, model) => {
     return put(URL_CAMPAIGNREGISTRATION_BASE + '/' + id, model)
 }
 
-const deleteCampaignRegistration = (id) => {
+export const deleteCampaignRegistration = (id) => {
     return remove(URL_CAMPAIGNREGISTRATION_BASE + '/' + id)
 }

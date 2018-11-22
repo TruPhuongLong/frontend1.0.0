@@ -4,7 +4,7 @@ import moment from 'moment'
 
 import {URL_BASE} from '../../libs/constant'
 
-const ListProducts = ({ list, onClickEdit, onClickDelete }) => {
+const ListProducts = ({ list, onClickEdit, onClickDelete, onClickCampaign }) => {
     return (
         <div className="table-responsive">
             <table className="table table-hover table-striped">
@@ -17,6 +17,7 @@ const ListProducts = ({ list, onClickEdit, onClickDelete }) => {
                         <th>Unit</th>
                         <th>Content</th>
                         <th>Create At</th>
+                        <th></th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -39,6 +40,12 @@ const ListProducts = ({ list, onClickEdit, onClickDelete }) => {
                                     <td>{product.unitPrice}</td>
                                     <td>{product.content}</td>
                                     <td>{moment(product.createAt).format("DD-MM-YYYY")}</td>
+                                    <td>
+                                        <button
+                                            className="btn btn-success"
+                                            onClick={() => onClickCampaign(product)}
+                                        >Campaign</button>
+                                    </td>
                                     <td>
                                         <button
                                             className="btn btn-success"

@@ -9,6 +9,7 @@ import {
     GET_CAMPAIGNREGISTRATIONS,
     GET_CAMPAIGNREGISTRATION
 } from './type.action'
+import {MESSAGE} from '../../libs/constant'
 
 
 export const createCampaignRegistrationAction = (model) => {

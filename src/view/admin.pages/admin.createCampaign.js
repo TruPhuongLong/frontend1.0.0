@@ -7,8 +7,8 @@ import './styles.css'
 import AdminHeader from '../components/admin.header';
 import { Field } from '../components/core/field'
 import PriceOnRange from '../components/admin.priceOnRange'
-import {createCampaignAction} from '../../redux/actions/campagn.action'
-import {dispatchWithLoading} from '../../libs/funcHelp'
+import { createCampaignAction } from '../../redux/actions/campagn.action'
+import { dispatchWithLoading } from '../../libs/funcHelp'
 
 
 class AdminCreateCampaign extends React.Component {
@@ -57,13 +57,13 @@ class AdminCreateCampaign extends React.Component {
     }
 
     onInputRangeChanged = ({ index, name, value, errors }) => {
-        const { fieldErrors, fields} = this.state
+        const { fieldErrors, fields } = this.state
 
         // check value
         const priceValue = [...fields.prices];
-        if(name === 'price'){
+        if (name === 'price') {
             priceValue[index][name] = value
-        }else{
+        } else {
             priceValue[index]['quantity'] = priceValue[index]['quantity'] || {}
             priceValue[index]['quantity'][name] = value
         }
@@ -72,16 +72,16 @@ class AdminCreateCampaign extends React.Component {
         const priceError = [...fieldErrors.prices]
         if (errors) {
             // fieldErrors.prices = prices
-            if(name === 'price'){
+            if (name === 'price') {
                 priceError[index][name] = errors
-            }else{
+            } else {
                 priceError[index]['quantity'] = priceError[index]['quantity'] || {}
                 priceError[index]['quantity'][name] = errors
             }
         } else {
-            if(name === 'price'){
+            if (name === 'price') {
                 delete priceError[index][name]
-            }else{
+            } else {
                 priceError[index]['quantity'] = priceError[index]['quantity'] || {}
                 delete priceError[index]['quantity'][name]
             }
@@ -127,18 +127,17 @@ class AdminCreateCampaign extends React.Component {
 
     checkError = (obj) => {
         let error = false;
-        // const vals = Object.keys(obj);
-        for (const key in obj){
+        for (const key in obj) {
             const item = obj[key]
-            console.log(item)
-            if(item && item instanceof Array){
-                item.forEach(item => {
-                    this.checkError(item)
-                })
-            }else if(item && item instanceof Object){
-                this.checkError(item)
-            }else if(item){
-                error = true
+            if (item && item instanceof Array && item.length > 0) {
+                if (item[0] instanceof Object) {
+                    console.log('object', item[0])
+                    item.forEach(_item => {
+                        this.checkError(_item)
+                    })
+                } else {
+                    error = true
+                }
             }
         }
         return error
@@ -146,13 +145,18 @@ class AdminCreateCampaign extends React.Component {
 
     onSubmit = (event) => {
         event.preventDefault()
-        // console.log(JSON.stringify(this.state.fields))
-        // const model = {...this.state.fields, product: this.props.current._id}
-        // return this.props.createCampaign(model)
-        //         .then(cam => console.log(cam))
 
+        const isError = this.checkError(this.state.fieldErrors)
 
-        console.log(this.checkError(this.state.fieldErrors))
+        if (isError) {
+            alert("please check some error before submit!")
+        } else {
+            // console.log(JSON.stringify(this.state.fields))
+            const {current} = this.props
+            const model = { ...this.state.fields, product: current._id, productName: current.name }
+            return this.props.createCampaign(model)
+                // .then(_ => this.props.history.push('/admin/campaigns'))
+        }
     }
 
     render() {
@@ -219,11 +223,11 @@ class AdminCreateCampaign extends React.Component {
 
                         <div className="form-group" >
                             <label className="col-sm-2">Prices</label>
-                            <div className="col-sm-10" style={{ padding: '0px', margin: '0px', textAlign: 'start'}}>
+                            <div className="col-sm-10" style={{ padding: '0px', margin: '0px', textAlign: 'start' }}>
                                 <button
                                     className="btn btn-success"
                                     onClick={this.addMoreRange}
-                                    style={{marginLeft: '10px', marginBottom: '20px'}}
+                                    style={{ marginLeft: '10px', marginBottom: '20px' }}
                                 >Add more range</button>
 
                                 {
@@ -261,9 +265,7 @@ class AdminCreateCampaign extends React.Component {
                                     type="submit"
                                     className="btn btn-success"
                                     onClick={this.onSubmit}
-                                    // disabled={Object.keys(fieldErrors).length}
                                 >Submit</button>
-                                {/* <label>have error: {this.checkError(this.state.fieldErrors)}</label> */}
                             </div>
                         </div>
 

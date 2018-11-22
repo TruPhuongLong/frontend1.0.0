@@ -74,6 +74,7 @@ class Routes extends React.Component {
             return isAdmin ? (currentProduct ? <AdminEditProduct /> : <Redirect to="/admin/products"/>) : <Redirect to="/admin/login"/>
           }}/>
 
+          //campaign
           <Route path='/admin/createCampaign' exact render={() => {
             return isAdmin ? (currentProduct ? <AdminCreateCampaign /> : <Redirect to="/admin/products"/>) : <Redirect to="/admin/login"/>
           }}/>

@@ -8,6 +8,7 @@ import {
 import {
     GET_CAMPAIGN,
     GET_CAMPAIGNS,
+    SET_CURRENT_CAMPAIGN
 } from './type.action';
 import {MESSAGE} from '../../libs/constant'
 
@@ -83,3 +84,8 @@ export const deleteCampaignAction = (id) => {
             })
     }
 }
+
+export const setCurrentCampaignAction = (campaign) => ({
+    type: SET_CURRENT_CAMPAIGN,
+    payload: campaign
+})

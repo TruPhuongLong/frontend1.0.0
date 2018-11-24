@@ -6,7 +6,8 @@ import {
     signupAdmin,
     getAdmins,
     editAdmin,
-    deleteAdmin
+    deleteAdmin,
+    sendEmail
 } from '../../services/user.service';
 import { loginContainer, logout } from '../../services/auth.service';
 import {
@@ -172,6 +173,16 @@ export const deleteAdminAction = (userEmail) => {
                 // })
                 return MESSAGE.success
             })
+            .catch(_ => {
+                throw new Error(MESSAGE.fail)
+            })
+    }
+}
+
+export const sendEmailAction = (model) => {
+    return (dispatch, getState, extraArgument) => {
+        return sendEmail(model)
+            .then(_ => MESSAGE.success)
             .catch(_ => {
                 throw new Error(MESSAGE.fail)
             })

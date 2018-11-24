@@ -2,7 +2,6 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import moment from 'moment'
 
-import {URL_BASE} from '../../libs/constant'
 
 const ListProducts = ({ list, onClickEdit, onClickDelete, onClickCampaign }) => {
     return (
@@ -30,7 +29,7 @@ const ListProducts = ({ list, onClickEdit, onClickDelete, onClickCampaign }) => 
                                     <td>{index + 1}</td>
                                     <td>
                                         <img
-                                            src={product.imageUrls && (URL_BASE + '/' + product.imageUrls[0])}
+                                            src={product.imageUrls && (product.imageUrls[0])}
                                             alt=""
                                             style={{ width: '100px', height: '100px', objectFit: 'contain' }}
                                         />

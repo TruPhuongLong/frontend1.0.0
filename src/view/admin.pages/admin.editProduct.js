@@ -9,7 +9,7 @@ import { dispatchWithLoading } from '../../libs/funcHelp'
 import { editProductAction } from '../../redux/actions/product.action'
 import { Field } from '../components/core/field'
 import AdminHeader from '../components/admin.header';
-import { URL_BASE } from '../../libs/constant'
+
 
 class AdminEditProduct extends React.Component {
 
@@ -231,7 +231,7 @@ class AdminEditProduct extends React.Component {
                                 <div style={inline}>
                                     {
                                         imageUrlsFromServer.map((url, index) => {
-                                            return <Image src={URL_BASE + '/' + url} index={index} key={'1...' + index} remove={() => this._removeImageUrlsFromServer(index)} />
+                                            return <Image src={url} index={index} key={'1...' + index} remove={() => this._removeImageUrlsFromServer(index)} />
                                         })
                                     }
                                     {

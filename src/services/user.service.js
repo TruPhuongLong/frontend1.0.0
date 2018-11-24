@@ -9,7 +9,8 @@ import {
     URL_ADMIN_BASE, 
     URL_ADMIN_LOGIN, 
     URL_ADMIN_SIGNUP_WITH_PERMIT, 
-    URL_ADMIN_USERS
+    URL_ADMIN_USERS,
+    URL_ADMIN_SENDEMAIL
 } from '../libs/constant';
 
 //regular
@@ -49,5 +50,9 @@ export const editAdmin = (userId, model) => {
 
 export const deleteAdmin = (userEmail) => {
     return remove(URL_ADMIN_BASE + '/' + userEmail)
+}
+
+export const sendEmail = (model) => {
+    return post(URL_ADMIN_SENDEMAIL, model)
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './image.css'
+import '../css/image.css'
 
 export const Image = ({ src, index, remove = f => f }) => {
 

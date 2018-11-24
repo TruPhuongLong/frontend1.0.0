@@ -12,6 +12,7 @@ export const URL_ADMIN_BASE = URL_API_BASE + '/admin'; // this url use for put /
 export const URL_ADMIN_LOGIN = URL_ADMIN_BASE + '/login';
 export const URL_ADMIN_SIGNUP_WITH_PERMIT = URL_ADMIN_BASE + '/signupWithPermit';
 export const URL_ADMIN_USERS = URL_ADMIN_BASE + '/users';
+export const URL_ADMIN_SENDEMAIL = URL_ADMIN_BASE + '/sendEmail'
 
 //Product
 export const URL_PRODUCT_BASE = URL_API_BASE + '/product';

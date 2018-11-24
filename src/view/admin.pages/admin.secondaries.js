@@ -1,10 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './styles.css'
 import AdminHeader from '../components/admin.header';
-import {getAdminsAction, deleteAdminAction} from '../../redux/actions/user.action';
+import {getAdminsAction, deleteAdminAction, setCurrentUserAction} from '../../redux/actions/user.action';
 import {dispatchWithLoading} from '../../libs/funcHelp';
 
 
@@ -21,8 +22,13 @@ class AdminSecondaries extends React.Component {
             .then(_ => getAdmins())
     }
 
-    sendEmail = (userEmail) => {
-        console.log(userEmail)
+    pustSendEmailScreen = (user) => {
+        const {history, setCurrentUser} = this.props
+        //set current user: !importance
+        setCurrentUser(user)
+
+        // push to screen send mailg
+        history.push('/admin/sendEmail')
     }
 
     render(){
@@ -58,7 +64,7 @@ class AdminSecondaries extends React.Component {
                                                 <td>
                                                     <button 
                                                         className="btn btn-success"
-                                                        onClick={() => this.sendEmail(user.email)}
+                                                        onClick={() => this.pustSendEmailScreen(user)}
                                                     >Send Email</button>
                                                 </td>
                                             </tr>
@@ -86,8 +92,11 @@ const mapDispatchToProps = (dispatch) => {
         },
         deleteAdmin: (userEmail) => {
             return dispatchWithLoading(dispatch, deleteAdminAction(userEmail))
+        },
+        setCurrentUser: (user) => {
+            return dispatch(setCurrentUserAction(user))
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminSecondaries)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AdminSecondaries))

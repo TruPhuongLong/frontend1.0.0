@@ -1,0 +1,135 @@
+.home-intro {
+  background-color: #fff;
+  box-shadow: 1px 1px 10px #a9a9a9;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+.home-intro-text {
+  padding-top: 80px;
+}
+.home-title {
+  margin-bottom: 10px;
+  text-align: right;
+}
+.home-title h2 {
+  font-size: 32px;
+  color: #4a4a4a;
+  font-weight: bold;
+  letter-spacing: 5px;
+  line-height: 1.4;
+}
+.home-title span {
+  display: block;
+  width: 30%;
+  height: 2px;
+  background-color: #ededed;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.home-intro-text p {
+  font-size: 18px;
+  color: #9d9d9c;
+  font-weight: bold;
+  line-height: 1.4;
+}
+.home-btn-intro {
+  display: inline-block;
+  margin-top: 30px;
+  border-radius: 20px;
+  padding: 5px 25px;
+  background-color: transparent;
+  transition: 0.6s all ease;
+}
+.home-btn-detail {
+  border: 1px solid #4a4a4a;
+  color: #4a4a4a;
+  font-weight: bold;
+}
+.home-btn-detail:hover {
+  background-color: #4a4a4a;
+  color: #fff;
+  transition: 0.6s all ease;
+}
+.home-btn-product {
+  border: 1px solid #ef2840;
+  color: #ef2840;
+  font-weight: bold;
+
+}
+.home-btn-product:hover {
+  background-color: #ef2840;
+  color: #fff;
+  transition: 0.6s all ease;
+}
+
+/*Home Intron Detail*/
+.home-intro-detail {
+  background-color: #858585;
+  margin-top: 20px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 10px #a9a9a9;
+}
+.home-video-text {
+  padding-top: 80px;
+  padding-left: 20px;
+}
+.home-video-text h2 {
+  font-size: 32px;
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+.home-video-text ul li {
+  list-style-type: circle;
+  color: #fff;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+/*Ingredient*/
+.home-ingredient {
+  margin: 10px 0;
+  width: 50%;
+  text-align: center;
+}
+.home-ingredient span {
+  border: 2px solid #c9c8c9;
+  position: absolute;
+  left: 0;
+  top: 48%;
+  z-index: 1;
+  display: inline-block;
+  width: 100%;
+}
+.home-ingredient p {
+  font-size: 32px;
+  color: #4a4a4a;
+  font-weight: bold;
+  padding: 0 10px;
+  position: relative;
+  z-index: 2;
+  background-color: #f7f7f7;
+  display: inline-block;
+}
+.home-ingredient-main {
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 1px 1px 10px #a9a9a9;
+  padding: 40px 10px;
+  text-align: center;
+}
+.home-ingredient-name h3 {
+  font-size: 26px;
+  color: #4a4a4a;
+}
+.home-ingredient-name span {
+  font-size: 26px;
+  color: #ff4157;
+  padding: 5px;
+  display: inline-block;
+}
+.home-ingredient-cntn p {
+  font-size: 18px;
+  margin-top: 10px;
+}

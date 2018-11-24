@@ -1,0 +1,33 @@
+.product-image-container {
+    background-color: #fff;
+    
+}
+
+.product-image-container h2 {
+	font-size: 24px;
+	color: #4a4a4a;
+	font-weight: bold;
+}
+
+.product-image-main img{
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.product-image-main {
+    height: fit-content;
+}
+
+.product-image-aside{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-image-aside img {
+    width: auto;
+    object-fit: contain;
+}
+
+

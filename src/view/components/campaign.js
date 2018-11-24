@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import $ from 'jquery'
 
 import '../css/campaign.css'
 import socket from '../../services/socketIO.service'

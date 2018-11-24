@@ -19,7 +19,7 @@ import AdminOrder from './view/admin.pages/admin.order'
 import AdminEditProduct from './view/admin.pages/admin.editProduct'
 import AdminCreateCampaign from './view/admin.pages/admin.createCampaign'
 import AdminSendEmail from './view/admin.pages/admin.sendEmail'
-import Campaign from './view/components/campaign'
+import Campaign from './view/pages/campaign'
 
 import {isAdminPrimary} from './libs/funcHelp';
 

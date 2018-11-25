@@ -1,5 +1,5 @@
 .price-label {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-lg);
     color: var(--color-red);
     font-weight: bold;
 }

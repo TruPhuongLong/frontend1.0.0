@@ -5,7 +5,6 @@
 .campaign-lifetime {
     position: relative;
     height: 100px;
-    /* background-color: aqua; */
 }
 
 .campaign-lifetime > *{
@@ -14,11 +13,82 @@
     bottom: 0px;
 }
 
+
+
+
+
+
+
 .campaign-lifetime > :nth-child(2){
     bottom: calc((var(--dimention-circle-point) / 2 - calc(var(--height-line-gradient) / 2)) * -1);
-    width: calc(100% + var(--dimention-circle-point));
+    /* width: calc(100% + var(--dimention-circle-point)); */
     left: calc((var(--dimention-circle-point) / 2) * -1);
+
+    /* counter-reset: section; */
 }
+/* 
+.campaign-lifetime > :nth-child(2) > *::before{
+    counter-increment: section;
+    position: absolute;
+    bottom: 0px;
+    left: calc(var(--run-percent + calc(counter(section))));
+} */
+
+
+
+
+/* better if we can get dynamic in var(--run-percent-n) */
+.campaign-lifetime > :nth-child(2) > :nth-child(1){
+    position: absolute;
+    bottom: 0px;
+    left: calc(var(--run-percent-1));
+}
+.campaign-lifetime > :nth-child(2) > :nth-child(2){
+    position: absolute;
+    bottom: 0px;
+    left: calc(var(--run-percent-2));
+}
+.campaign-lifetime > :nth-child(2) > :nth-child(3){
+    position: absolute;
+    bottom: 0px;
+    left: calc(var(--run-percent-3));
+}
+.campaign-lifetime > :nth-child(2) > :nth-child(4){
+    position: absolute;
+    bottom: 0px;
+    left: calc(var(--run-percent-4));
+}
+.campaign-lifetime > :nth-child(2) > :nth-child(5){
+    position: absolute;
+    bottom: 0px;
+    left: calc(var(--run-percent-5));
+}
+.campaign-lifetime > :nth-child(2) > :nth-child(6){
+    position: absolute;
+    bottom: 0px;
+    left: calc(var(--run-percent-6));
+}
+.campaign-lifetime > :nth-child(2) > :nth-child(7){
+    position: absolute;
+    bottom: 0px;
+    left: calc(var(--run-percent-7));
+}
+.campaign-lifetime > :nth-child(2) > :nth-child(8){
+    position: absolute;
+    bottom: 0px;
+    left: calc(var(--run-percent-8));
+}
+
+
+
+
+
+
+
+
+
+
+
 
 .campaign-lifetime > :nth-child(3){
     bottom: calc((var(--dimention-circle-point-run) / 2 - calc(var(--height-line-gradient) / 2)) * -1);
@@ -27,13 +97,7 @@
 
 .campaign-lifetime-point {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-}
-
-@media only screen and (min-width: 786px){
-    .campaign-lifetime-point {
-        flex-direction: column;
-    }
 }

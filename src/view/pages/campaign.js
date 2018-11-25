@@ -7,7 +7,7 @@ import CampaignLifeTime from '../components/common/campaign.lifetime'
 
 class Campaign extends Component {
 
-    state = {
+    campaign = {
         prices: [
             {
                 quantity: {
@@ -19,25 +19,19 @@ class Campaign extends Component {
             {
                 quantity: {
                     min: 11,
-                    max: 20
+                    max: 25
                 },
                 price: 400
             },
             {
                 quantity: {
-                    min: 21,
+                    min: 26,
                     max: 30
                 },
                 price: 300
             }
         ],
-        currentQuantity: 10,
-    }
-
-    onClick = () => {
-        this.setState({
-            currentQuantity: ++this.state.currentQuantity
-        })
+        currentQuantity: 11,
     }
 
     render(){
@@ -53,9 +47,8 @@ class Campaign extends Component {
                 </div>
 
                 {/* <br /><br /><br /><br /><br /><br /> */}
-                <CampaignLifeTime {...this.state}/>
+                <CampaignLifeTime {...this.campaign}/>
 
-                <button onClick={this.onClick}>increment</button>
 
             </div>
         )

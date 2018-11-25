@@ -10,21 +10,46 @@ import List from '../core/list'
 
 class CampaignLifeTime extends React.Component {
 
+    constructor(props){
+        super(props)
+        this.updateCurrentQuantity()
+        this.calcPercentForEachPoint()
+    }
+
     componentWillReceiveProps({currentQuantity}){
         if(currentQuantity !== this.props.currentQuantity){
-            // update CirclePointRun 
-            const p = this.calcPercent(currentQuantity)  
-            // console.log('receive new percent: ', p)       
-            document.documentElement.style.setProperty('--run-percent', `${p}%`)
+            this.updateCurrentQuantity()
         }
     }
 
-    calcPercent = (nextQuantity) => {
+    updateCurrentQuantity = () => {
+        const maxQuantity = this.getMaxQuantityRange()
+        const p = this.calcPercentCurrent(this.props.currentQuantity, maxQuantity)  
+        document.documentElement.style.setProperty('--run-percent', `${p}%`)
+    }
+
+    getMaxQuantityRange = () => {
         const {prices} = this.props 
         if(!prices || prices.length <= 0) return 0;
+        // because prices sort with prices from big -> small <=> quantity from small -> big
         const maxQuantity = prices[prices.length - 1].quantity.min
-        // console.log('max quantity', maxQuantity)
-        return Math.round(nextQuantity / maxQuantity * 100)
+        return maxQuantity
+    }
+
+    calcPercentCurrent = (nextQuantity, maxQuantity) => {
+        let p = Math.round(nextQuantity / maxQuantity * 100)
+        p = p <= 0 ? 0 : (p >= 100 ? 100 : p)
+        return p
+    }
+
+    calcPercentForEachPoint = () => {
+        const {prices} = this.props 
+        const maxQuantity = this.getMaxQuantityRange()
+        prices.forEach((item, index) => {
+            const q = item.quantity.min
+            const p = this.calcPercentCurrent(q, maxQuantity)
+            document.documentElement.style.setProperty(`--run-percent-${index + 1}`, `${p}%`)
+        })
     }
 
     render(){

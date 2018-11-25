@@ -1,0 +1,5 @@
+.price-down , .price-down i{
+    font-size: var(--font-size-sm);
+    font-weight: bold;
+    color: var(--color-red);
+}

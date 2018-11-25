@@ -1,7 +1,5 @@
-.campaign-wr {
-	background-color: #fff;
-	box-shadow: 1px 1px 10px #a9a9a9;
+.campaign {
+	box-shadow: 1px 1px 10px var(--color-gray);
 	border-radius: 5px;
-    background-color: #e4e4e4;
-    box-sizing: content-box;
+	background-color: var(--color-white-50);
 }

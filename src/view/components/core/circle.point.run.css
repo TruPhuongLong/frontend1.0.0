@@ -1,0 +1,21 @@
+.circle-point-run {
+    display: inline-block;
+    width: var(--dimention-circle-point-run);
+    height: var(--dimention-circle-point-run);
+    border-radius: 50%;
+    line-height: var(--dimention-circle-point-run);
+    text-align: center;
+    background: var(--color-gray);
+    color: var(--color-yellow);
+    font-weight: bold;
+    font-size: var(--font-size-md);
+    animation: duoc-dang 1s ease-out infinite;
+}
+
+@keyframes duoc-dang {
+    100% {
+        transform: scale(1.5);
+        background-color: var(--color-white);
+        opacity: 0;
+    }
+}

@@ -1,0 +1,5 @@
+.line-gradient {
+    height: var(--height-line-gradient);
+    border-radius: 5px;
+    background: linear-gradient(90deg, var(--color-gray) 40%, var(--color-yellow) 60%);
+}

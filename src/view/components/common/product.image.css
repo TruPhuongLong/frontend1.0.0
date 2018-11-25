@@ -1,12 +1,14 @@
 .product-image-container {
-    background-color: #fff;
-    
+    background-color: var(--color-white);
+    padding: 10px 5px;
+    margin: 0px;
 }
 
-.product-image-container h2 {
-	font-size: 24px;
-	color: #4a4a4a;
-	font-weight: bold;
+.product-image-container h1 {
+    font-weight: bold;
+    font-size: var(--font-size-xl);
+	color: var(--color-gray);
+    text-align: center;
 }
 
 .product-image-main img{

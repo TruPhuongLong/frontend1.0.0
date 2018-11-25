@@ -1,0 +1,7 @@
+.time-card {
+	margin: 20px 0px;
+}
+.time-card li {
+    display: inline-block;
+    list-style-type: none;
+}

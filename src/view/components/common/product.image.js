@@ -25,25 +25,26 @@ export default class ProductImage extends React.Component {
     }
 
     componentWillUnmount(){
-        window.removeEventListener('resize')
+        window.removeEventListener('resize', this.onResize)
     }
 
     render(){
         const heightAside = this.state.heightAsideContainer / 4
+        const {src} = this.props
         return (
             <div className="product-image-container">
-                <h2>Numero 5. Vital Mask Pack</h2>
+                <h1>Numero 5. Vital Mask Pack</h1>
                 <div className="row">
                     <div className="col-3" >
                         <div className="product-image-aside">
-                            <img src="assets/images/1(1).jpg" alt="" style={{height: heightAside}}/>
-                            <img src="assets/images/1(1).jpg" alt="" style={{height: heightAside}}/>
-                            <img src="assets/images/1(1).jpg" alt="" style={{height: heightAside}}/>
-                            <img src="assets/images/1(1).jpg" alt="" style={{height: heightAside}}/>
+                            <img src={src} alt="" style={{height: heightAside}}/>
+                            <img src={src} alt="" style={{height: heightAside}}/>
+                            <img src={src} alt="" style={{height: heightAside}}/>
+                            <img src={src} alt="" style={{height: heightAside}}/>
                         </div>
                     </div>
                     <div className="col-9 product-image-main" ref={this.imgMainContainer}>
-                        <img src="assets/images/1(1).jpg" alt="" onLoad={this.onLoadImageMain}/>
+                        <img src={src} alt="" onLoad={this.onLoadImageMain}/>
                     </div>
                 </div>
             </div>

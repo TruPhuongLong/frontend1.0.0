@@ -1,0 +1,6 @@
+.day-range {
+	font-size: var(--font-size-xl);
+	color: var(--color-gray);
+	font-style: italic;
+	opacity: 0.54;
+}

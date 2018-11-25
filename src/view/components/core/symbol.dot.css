@@ -1,0 +1,5 @@
+.symbol-dot {
+	font-size: var(--font-size-xl);
+	color: var(--color-gray);
+	font-weight: bold;
+}

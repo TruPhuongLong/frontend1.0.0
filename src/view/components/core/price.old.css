@@ -1,0 +1,7 @@
+.price-old {
+    text-decoration: line-through;
+	font-size: var(--font-size-sm);
+	color: var(--color-gray);
+	font-weight: bold;
+}
+

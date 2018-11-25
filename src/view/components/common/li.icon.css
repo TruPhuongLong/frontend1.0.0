@@ -1,0 +1,17 @@
+.li-icon i {
+	margin-right: 8px;
+    color: var(--color-black);
+    font-size: var(--font-size-sm);
+    opacity: 0.5;
+}
+
+.li-icon {
+	font-weight: bold;
+}
+
+.li-icon p {
+    display: inline-block;
+    color: var(--color-gray);
+    font-size: var(--font-size-sm);
+}
+

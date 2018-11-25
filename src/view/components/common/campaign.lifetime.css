@@ -1,0 +1,39 @@
+.campaign-lifetime-container {
+    padding: 30px calc(var(--dimention-circle-point) / 2);
+}
+
+.campaign-lifetime {
+    position: relative;
+    height: 100px;
+    /* background-color: aqua; */
+}
+
+.campaign-lifetime > *{
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+}
+
+.campaign-lifetime > :nth-child(2){
+    bottom: calc((var(--dimention-circle-point) / 2 - calc(var(--height-line-gradient) / 2)) * -1);
+    width: calc(100% + var(--dimention-circle-point));
+    left: calc((var(--dimention-circle-point) / 2) * -1);
+}
+
+.campaign-lifetime > :nth-child(3){
+    bottom: calc((var(--dimention-circle-point-run) / 2 - calc(var(--height-line-gradient) / 2)) * -1);
+    left: var(--run-really);
+}
+
+.campaign-lifetime-point {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media only screen and (min-width: 786px){
+    .campaign-lifetime-point {
+        flex-direction: column;
+    }
+}

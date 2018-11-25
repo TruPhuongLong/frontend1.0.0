@@ -1,0 +1,13 @@
+.circle-point {
+    display: inline-block;
+    width: var(--dimention-circle-point);
+	height: var(--dimention-circle-point);
+	border-radius: 50%;
+	background-color: var(--color-yellow);
+	border: 2px solid var(--color-gray);
+	font-weight: bold;
+	font-size: var(--font-size-md);
+	color: var(--color-gray);
+	line-height: var(--dimention-circle-point);
+	text-align: center;
+}

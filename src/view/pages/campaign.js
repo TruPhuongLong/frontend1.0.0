@@ -8,6 +8,7 @@ import ProductDescription from '../components/common/product.description'
 import ProductUserManual from '../components/common/product.user.manual'
 import ProductIngredient from '../components/common/product.ingredient'
 import Hr from '../components/core/hr'
+import Carousel from '../components/common/carousel'
 
 class Campaign extends Component {
 
@@ -84,6 +85,8 @@ class Campaign extends Component {
                 </div>
 
                 <Hr title="Review" />
+
+                <Carousel />
 
             </div>
         )

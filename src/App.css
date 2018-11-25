@@ -12,6 +12,7 @@
   --color-yellow: #fae80e;
   --color-black: black;
   --color-gray: #777777;
+  --color-gray-50: #a9a9a9;
   --color-red: #ef2840; 
   --color-white: #fff;
   --color-white-50: #e4e4e4;
@@ -19,4 +20,8 @@
 
 @media screen and (min-width: 768px) {
   
+}
+
+body {
+  background-color: var(--color-white-50);
 }

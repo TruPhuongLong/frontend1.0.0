@@ -1,0 +1,18 @@
+.product-user-manual {
+    background-color: var(--color-gray);
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px var(--color-gray-50);
+}
+
+.product-user-manual .video-text h2 {
+    font-size: var(--font-size-xl);
+    color: var(--color-white);
+    font-weight: bold;
+    padding: 20px 0px 20px 35px;
+}
+
+.product-user-manual .video-text ul li {
+    list-style-type: circle;
+    color: var(--color-white);
+    font-size: var(--font-size-md);
+}

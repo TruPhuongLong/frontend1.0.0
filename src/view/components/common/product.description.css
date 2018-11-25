@@ -1,0 +1,44 @@
+.product-description {
+    box-shadow: 1px 1px 10px var(--color-gray);
+	border-radius: 5px;
+    background-color: var(--color-white);
+    font-size: var(--font-size-md);
+    font-weight: bold;
+    color: var(--color-gray)
+}
+
+.product-description .vertical-align {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.product-description img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+
+.product-description .title h2 {
+    font-size: var(--font-size-xl);
+    color: var(--color-gray);
+    letter-spacing: 5px;
+    line-height: 1.4;
+}
+
+.product-description .title > div {
+    position: relative;
+    margin: 10px 0px;
+    height: 2px;
+}
+
+.product-description .title span {
+    display: block;
+    width: 30%;
+    height: 2px;
+    background-color: var(--color-white-50);
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}

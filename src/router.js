@@ -3,7 +3,6 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
-import Home from "./view/pages/home";
 import Product from "./view/pages/product";
 import AdminLogin from './view/admin.pages/admin.login';
 import AdminHome from './view/admin.pages/admin.home';
@@ -28,8 +27,7 @@ class Routes extends React.Component {
     const {isAdmin, user, currentProduct, currentUser, currentOrder} = this.props;
     return (
       <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/home" exact component={Home} />
+          <Route path="/" exact component={Campaign} />
           <Route path="/product" exact component={Product} />
           <Route path="/cart" exact component={Product} />
           <Route path="/campaign" exact component={Campaign} />

@@ -1,0 +1,25 @@
+.hr {
+    padding: 10px 0;
+    text-align: center;
+}
+
+.hr span {
+    border: 2px solid var(--color-gray-50);
+    position: absolute;
+    left: 0;
+    top: 48%;
+    z-index: 1;
+    display: inline-block;
+    width: 100%;
+}
+
+.hr p {
+    font-size: var(--font-size-xl);
+    color: var(--color-gray);
+    font-weight: bold;
+    padding: 0 10px;
+    position: relative;
+    z-index: 2;
+    background-color: var(--color-white);
+    display: inline-block;
+}

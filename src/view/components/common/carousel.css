@@ -1,4 +1,20 @@
 .carousel > *{
     /* margin: auto; */
     /* height: fit-content; */
+    -webkit-animation-name: showMessage; 
+    -webkit-animation-duration: 1s; 
+    animation-name: showMessage;
+    animation-duration: 1s;
+}
+
+
+@-webkit-keyframes showMessage {
+    0%   {left: 100%;}
+    100% {left: 0%}
+}
+
+/* Standard syntax */
+@keyframes showMessage {
+    0%   {left: 100%;}
+    100% {left: 0%}
 }

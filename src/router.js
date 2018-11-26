@@ -28,8 +28,8 @@ class Routes extends React.Component {
     return (
       <Switch>
           <Route path="/" exact component={Campaign} />
-          <Route path="/product" exact component={Product} />
-          <Route path="/cart" exact component={Product} />
+          {/* <Route path="/product" exact component={Product} /> */}
+          {/* <Route path="/cart" exact component={Product} /> */}
           <Route path="/campaign" exact component={Campaign} />
 
           // ADMIN

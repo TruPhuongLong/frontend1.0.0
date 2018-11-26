@@ -15,7 +15,7 @@ import {MESSAGE} from '../../libs/constant'
 export const createCampaignRegistrationAction = (model) => {
     return (dispatch, getState, extraArgument) => {
         return createCampaignRegistration(model)
-            .then(_ => {
+            .then(campain => {
                 // if have dispatch will go here
                 return MESSAGE.success;
             })

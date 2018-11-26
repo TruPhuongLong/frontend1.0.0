@@ -4,6 +4,6 @@ import './box.time.css'
 
 export default ({time, style}) => {
     return (
-        <span className="box-time" style={style}>{time}</span>
+        <span className="box-time" style={style}>{time || '' }</span>
     )
 }

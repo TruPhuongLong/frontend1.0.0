@@ -28,13 +28,13 @@ export const createCampaignAction = (model) => {
 export const getCampaignAction = (id) => {
     return (dispatch, getState, extraArgument) => {
         return getCampaign(id)
-            .then(campagn => {
+            .then(campaign => {
                 // if have dispatch will go here
                 dispatch({
                     type: GET_CAMPAIGN,
-                    payload: campagn
+                    payload: campaign
                 })
-                return MESSAGE.success;
+                return campaign;
             })
             .catch(_ => {
                 throw new Error(MESSAGE.fail)
@@ -47,10 +47,12 @@ export const getCampaignsAction = (query) => {
         return getCampaigns(query)
             .then(campagns => {
                 // if have dispatch will go here
-                dispatch({
-                    type: GET_CAMPAIGNS,
-                    payload: campagns
-                })
+                if(campagns && campagns.length > 0){
+                    dispatch({
+                        type: GET_CAMPAIGNS,
+                        payload: campagns
+                    })
+                }
                 return MESSAGE.success;
             })
             .catch(_ => {

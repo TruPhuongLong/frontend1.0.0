@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import moment from 'moment'
 
 import './campaign.card.css'
 import DayRange from '../core/day.range'
@@ -14,11 +15,51 @@ import Icon from '../core/icon'
 
 
 class CampaignCard extends Component {
+
+    state = {
+        time: {}
+    }
+
+    componentDidMount(){
+        this.timeIntervalId = setInterval(this.calcDate, 1000)
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.timeIntervalId)
+    }
+
+    calcDate = () => {
+        const {endDate} = this.props
+        const now = moment();
+        const expiration = moment(endDate);
+
+        // get the difference between the moments
+        const diff = expiration.diff(now);
+
+        //express as a duration
+        const diffDuration = moment.duration(diff);
+
+        const time = {
+            days: diffDuration.days(), 
+            hours: diffDuration.hours(),
+            minutes: diffDuration.minutes(),
+            seconds: diffDuration.seconds()
+        }
+
+        this.setState({time})
+    }
+
+
     render(){
+        const {name, product, productName, startDate, endDate, currentQuantity, currentPrice, prices} = this.props
+
+        const {time} = this.state
+        const oldPrice = prices[0].price
+        
         return (
             <div className="campaign-card">
-                <DayRange start={587654432886} end={new Date('2019-03-09')} style={{textAlign: 'end'}}/>
-                <TimeCard time={{days: 6, hours: 5, minutes: 30, seconds: 59}}/>
+                <DayRange start={startDate} end={endDate} style={{textAlign: 'end'}}/>
+                <TimeCard time={time}/>
                 <div style={{padding: '5px 10px'}}>
                     <div className="row">
                             <div className="col-6">
@@ -30,12 +71,12 @@ class CampaignCard extends Component {
                             </div>
                     </div>
                     <LiIcon label="Xuất xứ" content="Hàn Quốc" />
-                    <LiIcon label="Đã đăng ký" content={<span><NumberUp number="100"/> Sản phẩm</span>} />
+                    <LiIcon label="Đã đăng ký" content={<span><NumberUp number={currentQuantity}/> Sản phẩm</span>} />
                     <LiIcon 
                         label="Giá hiện tại" 
                         content={<span>
-                            <PriceDown price="450000" unit="đ"/> 
-                            <PriceOld price="500000" unit="đ" />
+                            <PriceDown price={currentPrice} unit="đ"/> 
+                            <PriceOld price={oldPrice} unit="đ" />
                         </span>} 
                     />
                 </div>

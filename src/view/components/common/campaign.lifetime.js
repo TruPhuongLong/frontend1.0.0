@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom';
 
 import './campaign.lifetime.css'
 import CirclePoint from '../core/circle.point'
@@ -17,9 +16,9 @@ class CampaignLifeTime extends React.Component {
     }
 
     componentWillReceiveProps({currentQuantity}){
-        if(currentQuantity !== this.props.currentQuantity){
+        // if(currentQuantity !== this.props.currentQuantity){
             this.updateCurrentQuantity()
-        }
+        // }
     }
 
     updateCurrentQuantity = () => {

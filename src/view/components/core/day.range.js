@@ -17,11 +17,13 @@ const DayRange = ({start, end, style}) => {
 DayRange.propTypes = {
     start: PropTypes.oneOfType([
         PropTypes.instanceOf(Date),
-        PropTypes.number
+        PropTypes.number,
+        PropTypes.string
     ]),
     end: PropTypes.oneOfType([
         PropTypes.instanceOf(Date),
-        PropTypes.number
+        PropTypes.number,
+        PropTypes.string
     ])
 };
 

@@ -20,6 +20,7 @@
     height: auto;
     object-fit: contain;
     padding: 0px 15px;
+    background-color: transparent;
 }
 
 /* Safari 4.0 - 8.0 */

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { createCampaignRegistrationAction } from '../../redux/actions/campagnRegistration.action'
+import {getCampaignAction, getCampaignsAction, setCurrentCampaignAction} from '../../redux/actions/campagn.action'
 import { dispatchWithLoading } from '../../libs/funcHelp'
 import socket from '../../services/socketIO.service'
 
@@ -21,55 +22,38 @@ class Campaign extends Component {
         super(props)
 
         socket.on('stc-updateCampaign', campaign => {
-            console.log('=== quantity change: ', campaign.quantity)
+            this.props.setCurrentCampaign(campaign)
         })
     }
 
-    broadCardNewCampaignRegistration = (campaign) => {
+    componentDidMount(){
+        this.props.getCampaigns()
+    }
+
+    emitNewCR = (campaign) => {
         socket.emit('cts-updateCampaign', campaign);
     }
 
-    create = () => {
-        this.props.createCampaignRegistration(this.newCR)
-            .then(campain => {
-                
+    create = (newCr) => {
+        this.props.createCampaignRegistration(newCr)
+            .then(_ => {
+                // get new campaign:
+                console.log('=== create success campaing res')
+                this.props.getCampaign(newCr.campaignId)
+                    .then(campaign => {
+                        console.log('=== get current campaign cuccess', campaign)
+                        this.emitNewCR(campaign)
+                    })
             })
     }
 
     newCR = {
-        campaignId: '5bf7d0b5f1f5ba1694071f46',
-        campaignName: 'keyboard campaign',
-        quantity: 20,
+        campaignId: '5bfb81d15ccc631eec28b602',
+        campaignName: 'campaign for babe',
+        quantity: 10,
         user: {
             email: 'longbaloca@gmail.com'
         },
-    }
-
-    campaign = {
-        prices: [
-            {
-                quantity: {
-                    min: 0,
-                    max: 10
-                },
-                price: 500
-            },
-            {
-                quantity: {
-                    min: 11,
-                    max: 25
-                },
-                price: 400
-            },
-            {
-                quantity: {
-                    min: 26,
-                    max: 30
-                },
-                price: 300
-            }
-        ],
-        currentQuantity: 10,
     }
 
     ingredients = [
@@ -79,6 +63,7 @@ class Campaign extends Component {
     ]
 
     render() {
+        const currentCampain = this.props.current
         return (
             <div className="container" style={{ padding: '30px 0px' }}>
                 <div className="row campaign-1">
@@ -86,14 +71,19 @@ class Campaign extends Component {
                         <ProductImage src="assets/images/1(1).jpg" />
                     </div>
                     <div className="col-md-6">
-                        <CampaignCard />
+                        {
+                            currentCampain ? <CampaignCard {...currentCampain} /> : null
+                        }
                     </div>
                 </div>
 
-                <CampaignLifeTime {...this.campaign} />
+                {
+                    currentCampain ? <CampaignLifeTime {...currentCampain} /> : null
+                }
+                
                 <br /><br />
 
-                <button onClick={() => this.broadCardNewCampaignRegistration(this.newCR)}>create new CR</button>
+                <button onClick={() => this.create(this.newCR)}>create new CR</button>
 
                 <div className="row">
                     <div className="col-md-10 col-md-offset-1">
@@ -137,21 +127,17 @@ const mapDispatchToProps = dispatch => {
     return {
         createCampaignRegistration: (model) => {
             return dispatchWithLoading(dispatch, createCampaignRegistrationAction(model))
+        },
+        getCampaign: (id) => {
+            return dispatchWithLoading(dispatch, getCampaignAction(id))
+        },
+        getCampaigns: (query) => {
+            return dispatchWithLoading(dispatch, getCampaignsAction(query))
+        },
+        setCurrentCampaign: (campaign) => {
+            dispatch(setCurrentCampaignAction(campaign))
         }
     }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Campaign)
-
-/**
- * campaignId: 5bf7d0b5f1f5ba1694071f46,
-    campaignName: keyboard campaign,
-    quantity: {
-        type: 30,
-        required: true
-    },
-    user: {
-        type: UserSchema,
-        required: true
-    },
- */

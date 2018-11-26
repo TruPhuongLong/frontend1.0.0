@@ -24,12 +24,24 @@ export default class Carousel extends React.Component {
         numberShow: 3,
     }
 
+    calcState = () => {
+        if(window.innerWidth < 768){
+            this.setState({numberShow: 1})
+        }else{
+            this.setState({numberShow: 3})
+        }
+    }
+
+
     componentDidMount(){
         this.timeIntervalId = setInterval(this.slide, 3000)
+        this.calcState()
+        window.addEventListener('resize', this.calcState)
     }
 
     componentWillUnmount(){
         clearInterval(this.timeIntervalId)
+        window.removeEventListener('resize', this.calcState)
     }
 
     slide = () => {
@@ -42,17 +54,15 @@ export default class Carousel extends React.Component {
     }
 
     
-
     render(){
         const {current, numberShow} = this.state
         const arrDummy = Array(numberShow).fill(0)
-        console.log(arrDummy)
         return (
-            <div className="row" style={{height: '300px'}}>
+            <div className="row carousel" style={{height: '350px'}}>
                 {
                     arrDummy.map((_, index) => {
                         return (
-                            <div className={`col-md-${12 / numberShow}`}>
+                            <div className={`col-md-${12 / numberShow} `} key={index}>
                                 <Review {...this.reviews[current + index]} />
                             </div>
                         )

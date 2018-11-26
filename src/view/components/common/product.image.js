@@ -21,7 +21,7 @@ export default class ProductImage extends React.Component {
     onResize = () => {
         const heightAsideContainer = this.imgMainContainer.current.offsetHeight;
         this.setState({heightAsideContainer})
-        console.log(heightAsideContainer)
+        // console.log(heightAsideContainer)
     }
 
     componentWillUnmount(){

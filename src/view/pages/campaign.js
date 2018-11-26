@@ -36,7 +36,7 @@ class Campaign extends Component {
                 price: 300
             }
         ],
-        currentQuantity: 18,
+        currentQuantity: 10,
     }
 
     ingredients = [
@@ -75,7 +75,7 @@ class Campaign extends Component {
                     {
                         this.ingredients.map((ingredient, index, array) => {
                             return (
-                                <div className="col-sm-4">
+                                <div className="col-sm-4" key={index}>
                                     <ProductIngredient {...ingredient} />
                                 </div>
                             )

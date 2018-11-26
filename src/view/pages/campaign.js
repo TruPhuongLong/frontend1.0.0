@@ -26,7 +26,7 @@ class Campaign extends Component {
         super(props)
 
         socket.on('stc-updateCampaign', campaign => {
-            this.props.setCurrentCampaign(campaign)
+            campaign && this.props.setCurrentCampaign(campaign)
         })
     }
 
@@ -38,12 +38,12 @@ class Campaign extends Component {
         socket.emit('cts-updateCampaign', campaign);
     }
 
-    create = (newCr) => {
-        this.props.createCampaignRegistration(newCr)
+    upload = (model) => {
+        this.props.createCampaignRegistration(model)
             .then(_ => {
                 // get new campaign:
                 console.log('=== create success campaing res')
-                this.props.getCampaign(newCr.campaignId)
+                this.props.getCampaign(model.campaignId)
                     .then(campaign => {
                         console.log('=== get current campaign cuccess', campaign)
                         this.emitNewCR(campaign)
@@ -60,17 +60,23 @@ class Campaign extends Component {
     }
 
     registerCampaign = (model) => {
-        console.log(model)
         this.onHideModal()
+        const camres = this.createCampaignRes(model);
+        this.upload(camres)
     }
 
-    newCR = {
-        campaignId: '5bfb81d15ccc631eec28b602',
-        campaignName: 'campaign for babe',
-        quantity: 10,
-        user: {
-            email: 'longbaloca@gmail.com'
-        },
+    createCampaignRes = (model) => {
+        const {_id, name} = this.props.current
+        return {
+            campaignId: _id,
+            campaignName: name,
+            quantity: model.quantity,
+            user: {
+                email: model.email,
+                name: model.name,
+                phoneNumber: model.phone
+            }
+        }
     }
 
     ingredients = [
@@ -105,8 +111,6 @@ class Campaign extends Component {
                 }
                 
                 <br /><br />
-
-                <button onClick={() => this.create(this.newCR)}>create new CR</button>
 
                 <div className="row">
                     <div className="col-md-10 col-md-offset-1">

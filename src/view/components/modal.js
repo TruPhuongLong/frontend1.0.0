@@ -1,58 +1,91 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { isEmail } from 'validator';
+
+import {Field} from './core/field'
 
 export default class Modal extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            show: true,
-            name: "",
-            phone: "",
-            email: "",
+
+    initState = {
+        fields: {
+            name: '',
+            phone: '',
+            email: '',
             quantity: 1,
-            totalPrice: props.unitPrice,
-            disabled: true,
-        };
+            totalPrice: this.props.unitPrice || 0,
+        },
+        fieldErrors: {}
     }
 
-    onHandleChange = (event) => {
-
-        const { target } = event;
-        const { name, value } = target;
-        this.setState({ [name]: value });
-    };
+    constructor(props) {
+        super(props);
+        
+        this.state = this.initState
+    }
 
     increaseQuantity = () => {
-        const quantity = parseInt(this.state.quantity) + 1
-        this.setState({ quantity }, this.calculateTotalPrice);
+        const quantity = parseInt(this.state.fields.quantity) + 1
+        this.setState(state => ({
+            fields: {
+                ...state.fields,
+                quantity,
+            }
+        }))
+        this.calculateTotalPrice()
     };
 
     decreaseQuantity = () => {
-
-        const quantity = parseInt(this.state.quantity) - 1
+        const quantity = parseInt(this.state.fields.quantity) - 1
         if (quantity <= 0) return;
-        this.setState({ quantity }, this.calculateTotalPrice);
+        this.setState(state => ({
+            fields: {
+                ...state.fields,
+                quantity,
+            }
+        }))
+        this.calculateTotalPrice()
     };
 
     calculateTotalPrice = () => {
         const { unitPrice } = this.props;
-        const totalPrice = this.state.quantity * unitPrice;
-        this.setState({ totalPrice });
+        const totalPrice = this.state.fields.quantity * unitPrice;
+        this.setState(state => ({ 
+            fields: {
+                ...state.fields,
+                totalPrice
+            }
+        }))
     }
 
-    showModal = () => {
-        this.setState({ show: true });
+    onInputChanged = ({ name, value, errors }) => {
+        const { fields, fieldErrors } = this.state;
+        fields[name] = value;
+        if (errors) {
+            fieldErrors[name] = errors;
+        } else {
+            delete fieldErrors[name];
+        }
+        this.setState({ fields, fieldErrors })
     }
 
     hideModal = () => {
-        this.setState({ show: false });
+        // this.setState({ show: false });
+        this.props.onHideModal();
+    }
+
+    onSubmit = (event) => {
+        event.preventDefault()
+        this.props.onSubmit(this.state.fields)
+
+        //reset
+        this.setState(this.initState)
     }
 
     render() {
-        const { show, name, phone, email, quantity, totalPrice ,disabled} = this.state;
+        const { name, phone, email, quantity, totalPrice } = this.state.fields;
+        const {fieldErrors} = this.state
         const { unitPrice } = this.props;
         return (
-            <div className={`cam-popup-wrapper ${show ? "show" : "hide"}`}>
+            <div className={`cam-popup-wrapper show`}>
                 {/* popup fill wr */}
                 <div className="col-xs-10 col-sm-10 col-md-10 col-xl-10 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-xl-offset-1 popup-fill-wr">
                     <div className="popup-fill">
@@ -84,26 +117,60 @@ export default class Modal extends React.Component {
                             <div className="col-xs-12 col-sm-6 col-md-6 col-xl-6 fill-info-cntn">
                                 <div className="fill-element text-left">
                                     <div className="row">
-                                        <div className="col-xs-5 col-sm-5 col-md-4 col-xl-4">
+                                        <div className="col-sm-5 col-md-4">
                                             <p>Khách hàng: </p>
                                         </div>
-                                        <input type="text" className="col-xs-7 col-sm-7 col-md-8 col-xl-8" name="name" value={name} onChange={this.onHandleChange} />
+                                        <div className="col-sm-7 col-md-8">
+                                            <Field type="text"
+                                                placeholder="@name"
+                                                className="form-control"
+                                                name="name"
+                                                value={name}
+                                                onChange={this.onInputChanged}
+                                                validates={[
+                                                    (val) => val.length > 0 ? null : 'name is require'
+                                                ]}
+                                            />
+                                        </div>
+                                        
                                     </div>
                                 </div>
                                 <div className="fill-element text-left">
                                     <div className="row">
-                                        <div className="col-xs-5 col-sm-5 col-md-4 col-xl-4">
+                                        <div className="col-sm-5 col-md-4">
                                             <p>Điện thoại: </p>
                                         </div>
-                                        <input type="text" className="col-xs-7 col-sm-7 col-md-8 col-xl-8" name="phone" value={phone} onChange={this.onHandleChange} />
+                                        <div className="col-sm-7 col-md-8">
+                                            <Field type="number"
+                                                placeholder="@phone"
+                                                className="form-control"
+                                                name="phone"
+                                                value={phone}
+                                                onChange={this.onInputChanged}
+                                                validates={[
+                                                    (val) => new RegExp("(0[3|5|7|8|9]|01[2|6|8|9])[0-9]{8}\\b").test(val) ? null : 'phone is require'
+                                                ]}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="fill-element text-left">
                                     <div className="row">
-                                        <div className="col-xs-5 col-sm-5 col-md-4 col-xl-4">
+                                        <div className="col-sm-5 col-md-4">
                                             <p>Email: </p>
                                         </div>
-                                        <input type="text" className="col-xs-7 col-sm-7 col-md-8 col-xl-8" name="email" value={email} onChange={this.onHandleChange} />
+                                        <div className="col-sm-7 col-md-8">
+                                            <Field type="email"
+                                                placeholder="@email"
+                                                className="form-control"
+                                                name="email"
+                                                value={email}
+                                                onChange={this.onInputChanged}
+                                                validates={[
+                                                    (val) => isEmail(val) ? null : 'email invalid'
+                                                ]}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                                 {/* choose */}
@@ -142,7 +209,16 @@ export default class Modal extends React.Component {
                                 </div>
                                 <div className="row text-center fill-button">
                                     <div className="col-xs-6 col-sm-6 col-xs-offset-3 col-sm-offset-3 col-md-4 col-xl-4 col-md-offset-4 col-xl-offset-4 ">
-                                        <div className={`btn btn-xs btn-sm btn-md btn-xl btn-order ${disabled?"disabled":""}`}><i className="fas fa-shopping-cart" />Đặt hàng</div>
+                                        <button 
+                                            onClick={this.onSubmit} 
+                                            className="btn btn-danger"
+                                            disabled={Object.keys(fieldErrors).length}
+                                        >Đặt hàng</button>
+                                        {/* <Button 
+                                            onClick={this.onSubmit}
+                                            style={disabled: {Object.keys(fieldErrors).length}}
+                                        >
+                                        <i className="fas fa-plus"></i> Đặt hàng</Button> */}
                                     </div>
                                 </div>
                                 {/* icon share */}

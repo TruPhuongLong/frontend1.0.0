@@ -17,7 +17,10 @@ import Hr from '../components/core/hr'
 import Carousel from '../components/common/carousel'
 import RegisterModal from '../components/modal'
 
+
 class Campaign extends Component {
+
+    state = {isShow: false}
 
     constructor(props) {
         super(props)
@@ -48,6 +51,19 @@ class Campaign extends Component {
             })
     }
 
+    onShowModal = () => {
+        this.setState({isShow: true})
+    }
+
+    onHideModal = () => {
+        this.setState({isShow: false})
+    }
+
+    registerCampaign = (model) => {
+        console.log(model)
+        this.onHideModal()
+    }
+
     newCR = {
         campaignId: '5bfb81d15ccc631eec28b602',
         campaignName: 'campaign for babe',
@@ -65,6 +81,7 @@ class Campaign extends Component {
 
     render() {
         const currentCampain = this.props.current
+        const {isShow} = this.state;
         return (
             <div className="container" style={{ padding: '30px 0px' }}>
                 <div className="row campaign-1">
@@ -73,7 +90,12 @@ class Campaign extends Component {
                     </div>
                     <div className="col-md-6">
                         {
-                            currentCampain ? <CampaignCard {...currentCampain} /> : null
+                            currentCampain ? 
+                            <CampaignCard 
+                                {...currentCampain} 
+                                registerCampaign={this.onShowModal}
+                            /> 
+                            : null
                         }
                     </div>
                 </div>
@@ -113,7 +135,18 @@ class Campaign extends Component {
                 <Hr title="Review" />
 
                 <Carousel />
-				<RegisterModal unitPrice={this.campaign.prices[0].price}></RegisterModal>
+
+                {
+                    isShow && currentCampain ?
+                    <RegisterModal 
+                        unitPrice={currentCampain.prices[0].price}
+                        onHideModal={this.onHideModal}
+                        onSubmit={this.registerCampaign}
+                    />
+                    : null
+                }
+				
+
             </div>
         )
     }

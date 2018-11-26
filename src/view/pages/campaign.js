@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-import './campaign.css'
+import '../css/campaign.css'
 import ProductImage from '../components/common/product.image'
 import CampaignCard from '../components/common/campaign.card'
 import CampaignLifeTime from '../components/common/campaign.lifetime'
@@ -9,6 +9,7 @@ import ProductUserManual from '../components/common/product.user.manual'
 import ProductIngredient from '../components/common/product.ingredient'
 import Hr from '../components/core/hr'
 import Carousel from '../components/common/carousel'
+import RegisterModal from '../components/modal'
 
 class Campaign extends Component {
 
@@ -87,7 +88,7 @@ class Campaign extends Component {
                 <Hr title="Review" />
 
                 <Carousel />
-
+				<RegisterModal unitPrice={this.campaign.prices[0].price}></RegisterModal>
             </div>
         )
     }

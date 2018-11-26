@@ -53,7 +53,7 @@ class CampaignCard extends Component {
                 </div>
                 
                 <div style={{textAlign: 'center', padding: '15px'}}>
-                    <Button ><i className="fas fa-plus"></i> Đăng kí</Button>
+                    <Button onClick={this.props.registerCampaign}><i className="fas fa-plus"></i> Đăng kí</Button>
                     <br /><br />
                     <div>
                         <Icon src="far fa-thumbs-up" />
